@@ -7,6 +7,8 @@
 //
 
 #import "AddItemVC.h"
+#import "Item.h"
+#import "RequestManager.h"
 
 @interface AddItemVC ()
 
@@ -21,19 +23,45 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Actions
+
+- (IBAction)changeCategoryAction:(id)sender {
+    
 }
-*/
+
+
+- (IBAction)saveAddNewAction:(id)sender {
+    [self saveItem];
+}
+
+
+- (IBAction)saveItemAction:(id)sender {
+    [self saveItem];
+}
+
+
+- (void)saveItem {
+    if (self.selectedCategory.itemCategoryId.length == 0) {
+        return;
+    }
+    
+    Item *item = [[Item alloc] init];
+    item.name = self.itemTitleLabel.text;
+    item.itemDescription = self.descriptionTextView.text;
+    item.categoryId = self.selectedCategory.itemCategoryId;
+    item.dealAccept = self.dealAcceptSegment.selectedSegmentIndex;
+    item.resourceType = self.resourceTypeSegment.selectedSegmentIndex;
+
+    [[RequestManager sharedInstance] addItem:item completionHandler:^(BOOL success) {
+        
+    }];
+}
 
 @end

@@ -8,8 +8,11 @@
 
 #import "RequestManager.h"
 #import "User+Converter.h"
+#import "Item+Converter.h"
 #import "Constants.h"
 #import "RequestGenerator.h"
+#import "Global.h"
+#import "User.h"
 
 @interface RequestManager()
 
@@ -65,11 +68,14 @@
     [self.requestGenerator generatePOSTrequest:urlString params:params completionHandler:^(BOOL success, NSInteger code, NSData *result) {
         NSLog(@"sign up statusCode %ld", (long)code);
         
-        if (result) {
-            NSError *error;
-            NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
-            NSLog(@"info %@", info);
+        NSError *error;
+        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+        NSString *session = info[@"session"];
+        if (session.length > 0) {
+            [[Global sharedInstance] setSessionId:session];
         }
+        
+        NSLog(@"info %@", info);
         
         handler(success);
     }];
@@ -85,10 +91,65 @@
         
         NSError *error;
         NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+        NSString *session = info[@"session"];
+        if (session.length > 0) {
+            [[Global sharedInstance] setSessionId:session];
+        }
+        
         NSLog(@"info %@", info);
     
         handler(success);
     }];
 }
+
+
+- (void)receiveUser:(void(^)(BOOL success))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"user"];
+    
+    [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        NSLog(@"receive user statusCode %ld", (long)code);
+        
+        NSError *error;
+        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+        
+        User *currentUser = [[Global sharedInstance] currentUser];
+        [currentUser updateWithResponce:info];
+    
+        handler(success);
+    }];
+}
+
+
+- (void)searchCategory:(NSString *)text completionHandler:(void(^)(BOOL success))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@", kServiceURL, @"category", text];
+    
+    [self.requestGenerator searchCategory:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        NSError *error;
+        NSArray *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+        
+    }];
+}
+
+
+- (void)addItem:(Item *)item completionHandler:(void(^)(BOOL success))handler {
+    NSDictionary *params = [item dictionaryWithItem];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"item"];
+    
+    [self.requestGenerator generatePOSTrequest:urlString params:params completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        NSLog(@"add item up statusCode %ld", (long)code);
+        
+        NSError *error;
+        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+        NSString *session = info[@"session"];
+        if (session.length > 0) {
+            [[Global sharedInstance] setSessionId:session];
+        }
+        
+        NSLog(@"info %@", info);
+        
+        handler(success);
+    }];
+}
+
 
 @end

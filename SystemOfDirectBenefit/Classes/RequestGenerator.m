@@ -8,10 +8,12 @@
 
 #import "RequestGenerator.h"
 #import "NSDictionary+UrlEncoding.h"
+#import "Global.h"
 
 @interface RequestGenerator ()
 
 @property (nonatomic, strong) NSURLSession *session;
+@property (nonatomic, strong) NSURLSessionDataTask *categorySearchTask;
 
 @end
 
@@ -60,5 +62,63 @@
     
     [postDataTask resume];
 }
+
+
+
+- (void)generateGETrequest:(NSString *)urlString completionHandler:(void(^)(BOOL success, NSInteger code, NSData *result))handler {
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    NSString *sessionId = [[Global sharedInstance] sessionId];
+    NSString *sessionField = [NSString stringWithFormat:@"session=%@", sessionId];
+    
+    [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:sessionField forHTTPHeaderField:@"Cookie"];
+
+    request.HTTPMethod = @"GET";
+    
+    NSURLSessionDataTask *postDataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSInteger statusCode = [httpResponse statusCode];
+        
+        BOOL success = (statusCode == 201 || statusCode == 200) && (error == nil);
+        handler(success, statusCode, data);
+    }];
+    
+    [postDataTask resume];
+}
+
+
+- (void)searchCategory:(NSString *)urlString completionHandler:(void(^)(BOOL success, NSInteger code, NSData *result))handler {
+    if (self.categorySearchTask) {
+        [self.categorySearchTask cancel];
+    }
+    
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    NSString *sessionId = [[Global sharedInstance] sessionId];
+    NSString *sessionField = [NSString stringWithFormat:@"session=%@", sessionId];
+    
+    [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:sessionField forHTTPHeaderField:@"Cookie"];
+    
+    request.HTTPMethod = @"GET";
+    
+    self.categorySearchTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSInteger statusCode = [httpResponse statusCode];
+        
+        BOOL success = (statusCode == 201 || statusCode == 200) && (error == nil);
+        handler(success, statusCode, data);
+    }];
+    
+    [self.categorySearchTask  resume];
+}
+
 
 @end

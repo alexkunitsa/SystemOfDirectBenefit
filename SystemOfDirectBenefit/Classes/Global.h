@@ -11,6 +11,8 @@
 
 @interface Global : NSObject
 
++ (Global *)sharedInstance;
+
 @property (nonatomic, strong) User *currentUser;
 @property (nonatomic, strong) NSString *sessionId;
 

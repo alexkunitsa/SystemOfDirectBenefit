@@ -10,7 +10,7 @@
 
 @interface ProfileVC : UIViewController
 
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *userNameLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *profilePictureImageView;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 

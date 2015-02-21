@@ -12,4 +12,9 @@
 
 - (void)generatePOSTrequest:(NSString *)urlString params:(NSDictionary *)params completionHandler:(void(^)(BOOL success, NSInteger code, NSData *result))handler;
 
+- (void)generateGETrequest:(NSString *)urlString completionHandler:(void(^)(BOOL success, NSInteger code, NSData *result))handler;
+
+
+- (void)searchCategory:(NSString *)urlString completionHandler:(void(^)(BOOL success, NSInteger code, NSData *result))handler;
+
 @end

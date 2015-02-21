@@ -11,5 +11,6 @@
 @interface User (Converter)
 
 - (NSDictionary *)dictionaryWithUser;
+- (void)updateWithResponce:(NSDictionary *)dict;
 
 @end

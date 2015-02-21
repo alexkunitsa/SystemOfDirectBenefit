@@ -7,6 +7,8 @@
 //
 
 #import "ProfileVC.h"
+#import "RequestManager.h"
+#import "Global.h"
 
 @implementation ProfileVC
 
@@ -15,10 +17,17 @@
     // Do any additional setup after loading the view.
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.navigationItem.hidesBackButton = YES;
+    
+    [[RequestManager sharedInstance] receiveUser:^(BOOL success) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.userNameLabel.text = [[[Global sharedInstance] currentUser] name];
+        });
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,14 +94,25 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 5) {
         [self performSegueWithIdentifier:@"addItemSegue" sender:self];
     }
+    
+    else if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"myItemsSegue" sender:self];
+    }
+    
+    else if (indexPath.row == 6) {
+        [self performSegueWithIdentifier:@"searchItemSegue" sender:self];
+    }
+    else if (indexPath.row == 7) {
+        [[Global sharedInstance] setSessionId:nil];
+        [[Global sharedInstance] setCurrentUser:nil];
+
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
-
-
-
 
 @end

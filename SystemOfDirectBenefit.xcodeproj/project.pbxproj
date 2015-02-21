@@ -25,6 +25,12 @@
 		20147E271A98E8880017A37D /* RequestGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E261A98E8880017A37D /* RequestGenerator.m */; };
 		20147E2A1A98F3270017A37D /* ProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E291A98F3270017A37D /* ProfileVC.m */; };
 		20147E2D1A98FD770017A37D /* AddItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E2C1A98FD770017A37D /* AddItemVC.m */; };
+		20147E301A9900410017A37D /* MyItemsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E2F1A9900410017A37D /* MyItemsVC.m */; };
+		20147E411A990F950017A37D /* SearchItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E401A990F950017A37D /* SearchItemVC.m */; };
+		20147E441A9919330017A37D /* SearchCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E431A9919330017A37D /* SearchCategoryVC.m */; };
+		20147E471A991D2F0017A37D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E461A991D2F0017A37D /* Item.m */; };
+		20147E4A1A9921F10017A37D /* ItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E491A9921F10017A37D /* ItemCategory.m */; };
+		20147E4D1A9926630017A37D /* Item+Converter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E4C1A9926630017A37D /* Item+Converter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +79,18 @@
 		20147E291A98F3270017A37D /* ProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileVC.m; sourceTree = "<group>"; };
 		20147E2B1A98FD770017A37D /* AddItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemVC.h; sourceTree = "<group>"; };
 		20147E2C1A98FD770017A37D /* AddItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemVC.m; sourceTree = "<group>"; };
+		20147E2E1A9900410017A37D /* MyItemsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyItemsVC.h; sourceTree = "<group>"; };
+		20147E2F1A9900410017A37D /* MyItemsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyItemsVC.m; sourceTree = "<group>"; };
+		20147E3F1A990F950017A37D /* SearchItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItemVC.h; sourceTree = "<group>"; };
+		20147E401A990F950017A37D /* SearchItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItemVC.m; sourceTree = "<group>"; };
+		20147E421A9919330017A37D /* SearchCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryVC.h; sourceTree = "<group>"; };
+		20147E431A9919330017A37D /* SearchCategoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryVC.m; sourceTree = "<group>"; };
+		20147E451A991D2F0017A37D /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		20147E461A991D2F0017A37D /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		20147E481A9921F10017A37D /* ItemCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCategory.h; sourceTree = "<group>"; };
+		20147E491A9921F10017A37D /* ItemCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCategory.m; sourceTree = "<group>"; };
+		20147E4B1A9926630017A37D /* Item+Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Item+Converter.h"; sourceTree = "<group>"; };
+		20147E4C1A9926630017A37D /* Item+Converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+Converter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +132,7 @@
 		20147DD61A98C9390017A37D /* SystemOfDirectBenefit */ = {
 			isa = PBXGroup;
 			children = (
+				20147E311A990E8F0017A37D /* 3rdParty */,
 				20147DFD1A98CFF00017A37D /* Controllers */,
 				20147DFE1A98CFF00017A37D /* Models */,
 				20147E111A98D9690017A37D /* Classes */,
@@ -165,6 +184,12 @@
 				20147E291A98F3270017A37D /* ProfileVC.m */,
 				20147E2B1A98FD770017A37D /* AddItemVC.h */,
 				20147E2C1A98FD770017A37D /* AddItemVC.m */,
+				20147E3F1A990F950017A37D /* SearchItemVC.h */,
+				20147E401A990F950017A37D /* SearchItemVC.m */,
+				20147E2E1A9900410017A37D /* MyItemsVC.h */,
+				20147E2F1A9900410017A37D /* MyItemsVC.m */,
+				20147E421A9919330017A37D /* SearchCategoryVC.h */,
+				20147E431A9919330017A37D /* SearchCategoryVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -176,6 +201,12 @@
 				20147E0F1A98D19B0017A37D /* User.m */,
 				20147E151A98DA500017A37D /* User+Converter.h */,
 				20147E161A98DA500017A37D /* User+Converter.m */,
+				20147E451A991D2F0017A37D /* Item.h */,
+				20147E461A991D2F0017A37D /* Item.m */,
+				20147E4B1A9926630017A37D /* Item+Converter.h */,
+				20147E4C1A9926630017A37D /* Item+Converter.m */,
+				20147E481A9921F10017A37D /* ItemCategory.h */,
+				20147E491A9921F10017A37D /* ItemCategory.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,6 +235,13 @@
 				20147E231A98E4CE0017A37D /* UITextField+Validation.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		20147E311A990E8F0017A37D /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = 3rdParty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,15 +344,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20147E471A991D2F0017A37D /* Item.m in Sources */,
 				20147E0A1A98D07C0017A37D /* SignUpVC.m in Sources */,
 				20147E271A98E8880017A37D /* RequestGenerator.m in Sources */,
 				20147E2A1A98F3270017A37D /* ProfileVC.m in Sources */,
+				20147E441A9919330017A37D /* SearchCategoryVC.m in Sources */,
 				20147E2D1A98FD770017A37D /* AddItemVC.m in Sources */,
 				20147E1B1A98DCF90017A37D /* NSDictionary+UrlEncoding.m in Sources */,
+				20147E301A9900410017A37D /* MyItemsVC.m in Sources */,
 				20147E211A98E11D0017A37D /* Global.m in Sources */,
+				20147E411A990F950017A37D /* SearchItemVC.m in Sources */,
 				20147E101A98D19B0017A37D /* User.m in Sources */,
 				20147E0D1A98D0930017A37D /* SignInVC.m in Sources */,
 				20147E171A98DA500017A37D /* User+Converter.m in Sources */,
+				20147E4D1A9926630017A37D /* Item+Converter.m in Sources */,
+				20147E4A1A9921F10017A37D /* ItemCategory.m in Sources */,
 				20147E141A98D9780017A37D /* RequestManager.m in Sources */,
 				20147DDD1A98C9390017A37D /* AppDelegate.m in Sources */,
 				20147E241A98E4CE0017A37D /* UITextField+Validation.m in Sources */,

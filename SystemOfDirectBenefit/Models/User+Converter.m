@@ -33,4 +33,13 @@
     return userDict;
 }
 
+
+- (void)updateWithResponce:(NSDictionary *)dict {
+    self.city = dict[@"city"];
+    self.login = dict[@"login"];
+    self.name = dict[@"name"];
+    self.phone = dict[@"tel"];
+}
+
+
 @end
