@@ -10,4 +10,6 @@
 
 @interface RequestGenerator : NSObject
 
+- (void)generatePOSTrequest:(NSString *)urlString params:(NSDictionary *)params completionHandler:(void(^)(BOOL success, NSInteger code, NSData *result))handler;
+
 @end

@@ -10,4 +10,13 @@
 
 @implementation UITextField (Validation)
 
+- (BOOL)isEmpty {
+    BOOL isEmpty = NO;
+    if (self.text.length == 0) {
+        isEmpty = YES;
+    }
+    
+    return isEmpty;
+}
+
 @end

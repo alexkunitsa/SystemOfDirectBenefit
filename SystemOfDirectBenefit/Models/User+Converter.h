@@ -10,4 +10,6 @@
 
 @interface User (Converter)
 
+- (NSDictionary *)dictionaryWithUser;
+
 @end

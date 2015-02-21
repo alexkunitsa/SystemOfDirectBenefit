@@ -10,4 +10,6 @@
 
 @implementation Constants
 
+NSString *const kServiceURL = @"http://148.251.215.74/api.php/";
+
 @end

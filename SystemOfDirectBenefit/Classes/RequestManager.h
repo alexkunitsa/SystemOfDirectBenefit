@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class User;
+
 @interface RequestManager : NSObject
+
++ (RequestManager *)sharedInstance;
+
+- (void)registerUser:(User *)user completionHandler:(void(^)(BOOL success))handler;
+- (void)login:(NSString *)login password:(NSString *)password completionHandler:(void(^)(BOOL success))handler;
 
 @end

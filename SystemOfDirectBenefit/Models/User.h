@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @interface User : NSObject
+
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *login;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSDate *birthday;
+@property (nonatomic, strong) NSData *registerDate;
+@property (nonatomic, assign) Gender gender;
+@property (nonatomic, assign) UserType type;
 
 @end

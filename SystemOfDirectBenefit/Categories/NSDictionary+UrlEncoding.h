@@ -1,6 +1,6 @@
 //
 //  NSDictionary+UrlEncoding.h
-//  testNSURLSession
+//  SystemOfDirectBenefit
 //
 //  Created by Alex Kunitsa on 02.02.15.
 //  Copyright (c) 2015 Alex Kunitsa. All rights reserved.

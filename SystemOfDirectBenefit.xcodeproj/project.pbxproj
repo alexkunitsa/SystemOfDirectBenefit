@@ -9,11 +9,22 @@
 /* Begin PBXBuildFile section */
 		20147DDA1A98C9390017A37D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147DD91A98C9390017A37D /* main.m */; };
 		20147DDD1A98C9390017A37D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147DDC1A98C9390017A37D /* AppDelegate.m */; };
-		20147DE01A98C9390017A37D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147DDF1A98C9390017A37D /* ViewController.m */; };
 		20147DE31A98C9390017A37D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20147DE11A98C9390017A37D /* Main.storyboard */; };
 		20147DE51A98C9390017A37D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20147DE41A98C9390017A37D /* Images.xcassets */; };
 		20147DE81A98C9390017A37D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20147DE61A98C9390017A37D /* LaunchScreen.xib */; };
 		20147DF41A98C9390017A37D /* SystemOfDirectBenefitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147DF31A98C9390017A37D /* SystemOfDirectBenefitTests.m */; };
+		20147E0A1A98D07C0017A37D /* SignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E091A98D07C0017A37D /* SignUpVC.m */; };
+		20147E0D1A98D0930017A37D /* SignInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E0C1A98D0930017A37D /* SignInVC.m */; };
+		20147E101A98D19B0017A37D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E0F1A98D19B0017A37D /* User.m */; };
+		20147E141A98D9780017A37D /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E131A98D9780017A37D /* RequestManager.m */; };
+		20147E171A98DA500017A37D /* User+Converter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E161A98DA500017A37D /* User+Converter.m */; };
+		20147E1B1A98DCF90017A37D /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E1A1A98DCF90017A37D /* NSDictionary+UrlEncoding.m */; };
+		20147E1E1A98E0D50017A37D /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E1D1A98E0D50017A37D /* Constants.m */; };
+		20147E211A98E11D0017A37D /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E201A98E11D0017A37D /* Global.m */; };
+		20147E241A98E4CE0017A37D /* UITextField+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E231A98E4CE0017A37D /* UITextField+Validation.m */; };
+		20147E271A98E8880017A37D /* RequestGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E261A98E8880017A37D /* RequestGenerator.m */; };
+		20147E2A1A98F3270017A37D /* ProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E291A98F3270017A37D /* ProfileVC.m */; };
+		20147E2D1A98FD770017A37D /* AddItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E2C1A98FD770017A37D /* AddItemVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +43,36 @@
 		20147DD91A98C9390017A37D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		20147DDB1A98C9390017A37D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		20147DDC1A98C9390017A37D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		20147DDE1A98C9390017A37D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		20147DDF1A98C9390017A37D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		20147DE21A98C9390017A37D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20147DE41A98C9390017A37D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		20147DE71A98C9390017A37D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		20147DED1A98C9390017A37D /* SystemOfDirectBenefitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SystemOfDirectBenefitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20147DF21A98C9390017A37D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20147DF31A98C9390017A37D /* SystemOfDirectBenefitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemOfDirectBenefitTests.m; sourceTree = "<group>"; };
+		20147E081A98D07C0017A37D /* SignUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpVC.h; sourceTree = "<group>"; };
+		20147E091A98D07C0017A37D /* SignUpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpVC.m; sourceTree = "<group>"; };
+		20147E0B1A98D0930017A37D /* SignInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInVC.h; sourceTree = "<group>"; };
+		20147E0C1A98D0930017A37D /* SignInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInVC.m; sourceTree = "<group>"; };
+		20147E0E1A98D19B0017A37D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		20147E0F1A98D19B0017A37D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		20147E121A98D9780017A37D /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
+		20147E131A98D9780017A37D /* RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
+		20147E151A98DA500017A37D /* User+Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Converter.h"; sourceTree = "<group>"; };
+		20147E161A98DA500017A37D /* User+Converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Converter.m"; sourceTree = "<group>"; };
+		20147E191A98DCF90017A37D /* NSDictionary+UrlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+UrlEncoding.h"; sourceTree = "<group>"; };
+		20147E1A1A98DCF90017A37D /* NSDictionary+UrlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+UrlEncoding.m"; sourceTree = "<group>"; };
+		20147E1C1A98E0D50017A37D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		20147E1D1A98E0D50017A37D /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		20147E1F1A98E11D0017A37D /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		20147E201A98E11D0017A37D /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
+		20147E221A98E4CE0017A37D /* UITextField+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Validation.h"; sourceTree = "<group>"; };
+		20147E231A98E4CE0017A37D /* UITextField+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Validation.m"; sourceTree = "<group>"; };
+		20147E251A98E8880017A37D /* RequestGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestGenerator.h; sourceTree = "<group>"; };
+		20147E261A98E8880017A37D /* RequestGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestGenerator.m; sourceTree = "<group>"; };
+		20147E281A98F3270017A37D /* ProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileVC.h; sourceTree = "<group>"; };
+		20147E291A98F3270017A37D /* ProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileVC.m; sourceTree = "<group>"; };
+		20147E2B1A98FD770017A37D /* AddItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemVC.h; sourceTree = "<group>"; };
+		20147E2C1A98FD770017A37D /* AddItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +114,12 @@
 		20147DD61A98C9390017A37D /* SystemOfDirectBenefit */ = {
 			isa = PBXGroup;
 			children = (
+				20147DFD1A98CFF00017A37D /* Controllers */,
+				20147DFE1A98CFF00017A37D /* Models */,
+				20147E111A98D9690017A37D /* Classes */,
+				20147E181A98DCF90017A37D /* Categories */,
 				20147DDB1A98C9390017A37D /* AppDelegate.h */,
 				20147DDC1A98C9390017A37D /* AppDelegate.m */,
-				20147DDE1A98C9390017A37D /* ViewController.h */,
-				20147DDF1A98C9390017A37D /* ViewController.m */,
 				20147DE11A98C9390017A37D /* Main.storyboard */,
 				20147DE41A98C9390017A37D /* Images.xcassets */,
 				20147DE61A98C9390017A37D /* LaunchScreen.xib */,
@@ -117,6 +152,58 @@
 				20147DF21A98C9390017A37D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20147DFD1A98CFF00017A37D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				20147E0B1A98D0930017A37D /* SignInVC.h */,
+				20147E0C1A98D0930017A37D /* SignInVC.m */,
+				20147E081A98D07C0017A37D /* SignUpVC.h */,
+				20147E091A98D07C0017A37D /* SignUpVC.m */,
+				20147E281A98F3270017A37D /* ProfileVC.h */,
+				20147E291A98F3270017A37D /* ProfileVC.m */,
+				20147E2B1A98FD770017A37D /* AddItemVC.h */,
+				20147E2C1A98FD770017A37D /* AddItemVC.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		20147DFE1A98CFF00017A37D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				20147E0E1A98D19B0017A37D /* User.h */,
+				20147E0F1A98D19B0017A37D /* User.m */,
+				20147E151A98DA500017A37D /* User+Converter.h */,
+				20147E161A98DA500017A37D /* User+Converter.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		20147E111A98D9690017A37D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				20147E1F1A98E11D0017A37D /* Global.h */,
+				20147E201A98E11D0017A37D /* Global.m */,
+				20147E1C1A98E0D50017A37D /* Constants.h */,
+				20147E1D1A98E0D50017A37D /* Constants.m */,
+				20147E121A98D9780017A37D /* RequestManager.h */,
+				20147E131A98D9780017A37D /* RequestManager.m */,
+				20147E251A98E8880017A37D /* RequestGenerator.h */,
+				20147E261A98E8880017A37D /* RequestGenerator.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		20147E181A98DCF90017A37D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				20147E191A98DCF90017A37D /* NSDictionary+UrlEncoding.h */,
+				20147E1A1A98DCF90017A37D /* NSDictionary+UrlEncoding.m */,
+				20147E221A98E4CE0017A37D /* UITextField+Validation.h */,
+				20147E231A98E4CE0017A37D /* UITextField+Validation.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +306,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20147DE01A98C9390017A37D /* ViewController.m in Sources */,
+				20147E0A1A98D07C0017A37D /* SignUpVC.m in Sources */,
+				20147E271A98E8880017A37D /* RequestGenerator.m in Sources */,
+				20147E2A1A98F3270017A37D /* ProfileVC.m in Sources */,
+				20147E2D1A98FD770017A37D /* AddItemVC.m in Sources */,
+				20147E1B1A98DCF90017A37D /* NSDictionary+UrlEncoding.m in Sources */,
+				20147E211A98E11D0017A37D /* Global.m in Sources */,
+				20147E101A98D19B0017A37D /* User.m in Sources */,
+				20147E0D1A98D0930017A37D /* SignInVC.m in Sources */,
+				20147E171A98DA500017A37D /* User+Converter.m in Sources */,
+				20147E141A98D9780017A37D /* RequestManager.m in Sources */,
 				20147DDD1A98C9390017A37D /* AppDelegate.m in Sources */,
+				20147E241A98E4CE0017A37D /* UITextField+Validation.m in Sources */,
 				20147DDA1A98C9390017A37D /* main.m in Sources */,
+				20147E1E1A98E0D50017A37D /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +510,7 @@
 				20147DF91A98C9390017A37D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20147DFA1A98C9390017A37D /* Build configuration list for PBXNativeTarget "SystemOfDirectBenefitTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +519,7 @@
 				20147DFC1A98C9390017A37D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

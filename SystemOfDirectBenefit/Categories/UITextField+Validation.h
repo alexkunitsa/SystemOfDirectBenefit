@@ -10,4 +10,6 @@
 
 @interface UITextField (Validation)
 
+- (BOOL)isEmpty;
+
 @end

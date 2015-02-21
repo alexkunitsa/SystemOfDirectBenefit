@@ -7,6 +7,10 @@
 //
 
 #import "SignInVC.h"
+#import "RequestManager.h"
+#import "UITextField+Validation.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface SignInVC ()
 
@@ -33,5 +37,42 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)loginAction {
+    NSArray *fields = @[self.loginTextField, self.passwordTextField];
+    BOOL valid = YES;
+    
+    for (UITextField *field in fields) {
+        if ([field isEmpty]) {
+            valid = NO;
+            field.textColor = [UIColor redColor];
+        }
+        else {
+            field.textColor = [UIColor grayColor];
+        }
+    }
+    
+    if (!valid) {
+        return;
+    }
+    
+    NSString *login = self.loginTextField.text;
+    NSString *password = self.passwordTextField.text;
+    
+    [[RequestManager sharedInstance] login:login password:password completionHandler:^(BOOL success) {
+        if (success) {
+            [self pushToProfile];
+        }
+    }];
+}
+
+
+#pragma mark - Navigation
+
+- (void)pushToProfile {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"loginToProfileSegue" sender:self];
+    });
+}
 
 @end

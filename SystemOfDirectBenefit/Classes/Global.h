@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface Global : NSObject
+
+@property (nonatomic, strong) User *currentUser;
+@property (nonatomic, strong) NSString *sessionId;
 
 @end
