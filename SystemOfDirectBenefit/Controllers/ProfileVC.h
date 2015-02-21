@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ProfileVC.h
 //  SystemOfDirectBenefit
 //
 //  Created by Alex Kunitsa on 2/21/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ProfileVC : UIViewController
 
 @end
-
