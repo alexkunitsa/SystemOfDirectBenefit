@@ -66,29 +66,29 @@
     cell.textLabel.text = nil;
 
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"Статистика";
+        cell.textLabel.text = @"Statistics";
         
     }
     else if (indexPath.row == 1) {
-        cell.textLabel.text = @"Текущие сделки";
+        cell.textLabel.text = @"Current deals";
     }
     else if (indexPath.row == 2) {
-        cell.textLabel.text = @"Уведомления";
+        cell.textLabel.text = @"Notifications";
     }
     else if (indexPath.row == 3) {
-        cell.textLabel.text = @"Мои ресурсы";
+        cell.textLabel.text = @"My items";
     }
     else if (indexPath.row == 4) {
-        cell.textLabel.text = @"Мои заявки";
+        cell.textLabel.text = @"My requests";
     }
     else if (indexPath.row == 5) {
-        cell.textLabel.text = @"Добавить услугу";
+        cell.textLabel.text = @"Add item";
     }
     else if (indexPath.row == 6) {
-        cell.textLabel.text = @"Найти услугу";
+        cell.textLabel.text = @"Search item";
     }
     else if (indexPath.row == 7) {
-        cell.textLabel.text = @"Выйти";
+        cell.textLabel.text = @"Sign out";
     }
 
     return cell;

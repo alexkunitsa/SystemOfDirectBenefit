@@ -46,16 +46,34 @@
     [self saveItem];
 }
 
+- (IBAction)showResourceTypeInfo:(id)sender {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Info"
+                                                        message:@"Put message text here"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (IBAction)showDealAccept:(id)sender {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Info"
+                                                        message:@"Put message text here"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
 
 - (void)saveItem {
-    if (self.selectedCategory.itemCategoryId.length == 0) {
-        return;
-    }
+//    if (self.selectedCategory.itemCategoryId.length == 0) {
+//        return;
+//    }
     
     Item *item = [[Item alloc] init];
     item.name = self.itemTitleLabel.text;
     item.itemDescription = self.descriptionTextView.text;
-    item.categoryId = self.selectedCategory.itemCategoryId;
+    item.categoryId = @"1";//self.selectedCategory.itemCategoryId;
     item.dealAccept = self.dealAcceptSegment.selectedSegmentIndex;
     item.resourceType = self.resourceTypeSegment.selectedSegmentIndex;
 

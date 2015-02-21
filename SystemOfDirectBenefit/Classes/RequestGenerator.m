@@ -36,6 +36,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[self formattedCookie] forHTTPHeaderField:@"Cookie"];
     request.HTTPBody = [[params urlEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
 
@@ -70,11 +71,8 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
-    NSString *sessionId = [[Global sharedInstance] sessionId];
-    NSString *sessionField = [NSString stringWithFormat:@"session=%@", sessionId];
-    
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:sessionField forHTTPHeaderField:@"Cookie"];
+    [request setValue:[self formattedCookie] forHTTPHeaderField:@"Cookie"];
 
     request.HTTPMethod = @"GET";
     
@@ -100,11 +98,8 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
-    NSString *sessionId = [[Global sharedInstance] sessionId];
-    NSString *sessionField = [NSString stringWithFormat:@"session=%@", sessionId];
-    
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:sessionField forHTTPHeaderField:@"Cookie"];
+    [request setValue:[self formattedCookie] forHTTPHeaderField:@"Cookie"];
     
     request.HTTPMethod = @"GET";
     
@@ -118,6 +113,13 @@
     }];
     
     [self.categorySearchTask  resume];
+}
+
+- (NSString *)formattedCookie {
+    NSString *sessionId = [[Global sharedInstance] sessionId];
+    NSString *sessionField = [NSString stringWithFormat:@"session=%@", sessionId];
+    
+    return sessionField;
 }
 
 

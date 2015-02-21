@@ -20,5 +20,8 @@
 - (void)receiveUser:(void(^)(BOOL success))handler;
 - (void)searchCategory:(NSString *)text completionHandler:(void(^)(BOOL success))handler;
 - (void)addItem:(Item *)item completionHandler:(void(^)(BOOL success))handler;
+- (void)receiveUserItems:(void(^)(BOOL success))handler;
+
+- (void)searchItem:(NSString *)text completionHandler:(void(^)(BOOL success))handler;
 
 @end

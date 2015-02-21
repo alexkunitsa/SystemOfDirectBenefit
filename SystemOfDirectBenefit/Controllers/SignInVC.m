@@ -20,38 +20,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+#pragma mark - Actions
 
 - (IBAction)loginAction {
-    NSArray *fields = @[self.loginTextField, self.passwordTextField];
-    BOOL valid = YES;
-    
-    for (UITextField *field in fields) {
-        if ([field isEmpty]) {
-            valid = NO;
-            field.textColor = [UIColor redColor];
-        }
-        else {
-            field.textColor = [UIColor grayColor];
-        }
-    }
-    
+    BOOL valid = [self areFieldsValid];
     if (!valid) {
         return;
     }
@@ -63,7 +43,39 @@
         if (success) {
             [self pushToProfile];
         }
+        else {
+            [self loginFailed];
+        }
     }];
+}
+
+
+#pragma mark - Private
+
+- (BOOL)areFieldsValid {
+    BOOL valid = YES;
+    NSArray *fields = @[self.loginTextField, self.passwordTextField];
+    
+    for (UITextField *field in fields) {
+        
+        if ([field isEmpty]) {
+            valid = NO;
+            [field makeHightlighted];
+        }
+        else {
+            [field makeNormal];
+        }
+    }
+    
+    return valid;
+}
+
+
+- (void)loginFailed {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"User was not logged in" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    
+    [alertView show];
+    [self.view endEditing:YES];
 }
 
 

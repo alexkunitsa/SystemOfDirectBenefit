@@ -21,5 +21,7 @@
 - (IBAction)changeCategoryAction:(id)sender;
 - (IBAction)saveAddNewAction:(id)sender;
 - (IBAction)saveItemAction:(id)sender;
+- (IBAction)showResourceTypeInfo:(id)sender;
+- (IBAction)showDealAccept:(id)sender;
 
 @end

@@ -10,8 +10,8 @@
 
 @interface SignInVC : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *loginTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (nonatomic, weak) IBOutlet UITextField *loginTextField;
+@property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 
 - (IBAction)loginAction;
 

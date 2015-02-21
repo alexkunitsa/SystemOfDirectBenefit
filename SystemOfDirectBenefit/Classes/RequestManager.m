@@ -152,4 +152,35 @@
 }
 
 
+- (void)receiveUserItems:(void(^)(BOOL success))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"items"];
+    
+    [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        NSLog(@"receive user items statusCode %ld", (long)code);
+        
+        NSError *error;
+        NSArray *items = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+        
+        handler(success);
+    }];
+}
+
+
+- (void)searchItem:(NSString *)text completionHandler:(void(^)(BOOL success))handler {
+//    NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"search/items?"];    
+//    [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+//        NSLog(@"receive user statusCode %ld", (long)code);
+//        
+//        NSError *error;
+//        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+//        
+//        User *currentUser = [[Global sharedInstance] currentUser];
+//        [currentUser updateWithResponce:info];
+//        
+//        handler(success);
+//    }];
+
+}
+
+
 @end

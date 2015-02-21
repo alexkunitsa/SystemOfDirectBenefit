@@ -19,4 +19,22 @@
     return isEmpty;
 }
 
+
+- (void)makeHightlighted {
+    [self changeBorderColor:[UIColor redColor]];
+}
+
+
+- (void)makeNormal {
+    [self changeBorderColor:[UIColor clearColor]];
+}
+
+
+- (void)changeBorderColor:(UIColor *)color {
+    self.layer.cornerRadius=3.0f;
+    self.layer.masksToBounds=YES;
+    self.layer.borderColor=[color CGColor];
+    self.layer.borderWidth= 1.0f;
+}
+
 @end

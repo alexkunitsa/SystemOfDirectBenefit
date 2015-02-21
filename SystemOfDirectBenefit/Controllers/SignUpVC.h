@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignUpVC : UIViewController
+@interface SignUpVC : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *nameTextField;
 @property (nonatomic, weak) IBOutlet UITextField *loginTextField;
@@ -18,6 +18,8 @@
 @property (nonatomic, weak) IBOutlet UITextField *birthDateTextField;
 @property (nonatomic, weak) IBOutlet UITextField *cityTextField;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *genderSegment;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordTextField;
 
 - (IBAction)createUserAction;
 

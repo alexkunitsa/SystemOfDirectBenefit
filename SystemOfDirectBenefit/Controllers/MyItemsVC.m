@@ -7,6 +7,7 @@
 //
 
 #import "MyItemsVC.h"
+#import "RequestManager.h"
 
 @interface MyItemsVC ()
 
@@ -19,7 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [[RequestManager sharedInstance] receiveUserItems:^(BOOL success) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

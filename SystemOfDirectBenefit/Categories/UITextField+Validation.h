@@ -11,5 +11,7 @@
 @interface UITextField (Validation)
 
 - (BOOL)isEmpty;
+- (void)makeHightlighted;
+- (void)makeNormal;
 
 @end
