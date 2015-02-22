@@ -14,6 +14,7 @@
 #import "RequestGenerator.h"
 #import "Global.h"
 #import "User.h"
+#import "Deal+Converter.h"
 
 @interface RequestManager()
 
@@ -193,8 +194,66 @@
         
         handler(success, resultItems);
     }];
+}
+
+
+- (void)addDeal:(NSString *)itemId completionHandler:(void(^)(BOOL success))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", kServiceURL, @"deal?item=", itemId];
+    
+    [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        
+        handler(success);
+    }];
+}
+
+
+- (void)changeDealStatus:(NSString *)dealId status:(NSNumber *)status completionHandler:(void(^)(BOOL success))handler {
+    
 
 }
 
+
+- (void)receiveDeals:(void(^)(BOOL success, NSMutableDictionary *items))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"deals"];
+    
+    [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        
+        NSError *error;
+        NSArray *items = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+
+        
+        NSMutableDictionary *resultItems = [[NSMutableDictionary alloc] init];
+        resultItems[@"0"] = [[NSMutableArray alloc] init];
+        resultItems[@"1"] = [[NSMutableArray alloc] init];
+        resultItems[@"2"] = [[NSMutableArray alloc] init];
+        resultItems[@"3"] = [[NSMutableArray alloc] init];
+        resultItems[@"4"] = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary *info in items) {
+            Deal *deal = [Deal dealWithDictionary:info];
+            
+            if ([deal.status isEqualToString:@"0"]) {
+                [resultItems[@"0"] addObject:deal];
+            }
+            else if ([deal.status isEqualToString:@"1"]) {
+                [resultItems[@"1"] addObject:deal];
+            }
+            else if ([deal.status isEqualToString:@"2"]) {
+                [resultItems[@"2"] addObject:deal];
+            }
+            else if ([deal.status isEqualToString:@"3"]) {
+                [resultItems[@"3"] addObject:deal];
+            }
+            else if ([deal.status isEqualToString:@"4"]) {
+                [resultItems[@"4"] addObject:deal];
+            }
+        }
+        
+        
+
+        
+        handler(success, resultItems);
+    }];
+}
 
 @end

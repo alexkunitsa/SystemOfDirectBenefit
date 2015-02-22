@@ -154,6 +154,9 @@
     else if (indexPath.row == 4) {
         [self performSegueWithIdentifier:@"profileToRequestsSegue" sender:self];
     }
+    else if (indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"myDealsSegue" sender:self];
+    }
 }
 
 

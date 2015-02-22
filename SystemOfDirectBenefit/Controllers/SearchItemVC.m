@@ -9,6 +9,7 @@
 #import "SearchItemVC.h"
 #import "RequestManager.h"
 #import "Item.h"
+#import "ItemInfoVC.h"
 
 @interface SearchItemVC ()
 
@@ -84,6 +85,13 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Item *item = self.items[indexPath.row];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ItemInfoVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"itemInfo"];
+    vc.item = item;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 //    ItemCategory *itemCategory = self.items[indexPath.row];
 //
 //    AddItemVC *vc = (AddItemVC *)[self backViewController];

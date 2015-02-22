@@ -21,7 +21,9 @@
 - (void)searchCategory:(NSString *)text completionHandler:(void(^)(BOOL success, NSArray *items))handler;
 - (void)addItem:(Item *)item completionHandler:(void(^)(BOOL success))handler;
 - (void)receiveUserItems:(BOOL)isRequestType completionHandler:(void(^)(BOOL success, NSArray *items))handler;
-
 - (void)searchItem:(NSString *)text completionHandler:(void(^)(BOOL success, NSArray *items))handler;
+- (void)addDeal:(NSString *)itemId completionHandler:(void(^)(BOOL success))handler;
+- (void)changeDealStatus:(NSString *)dealId status:(NSNumber *)status completionHandler:(void(^)(BOOL success))handler;
+- (void)receiveDeals:(void(^)(BOOL success, NSMutableDictionary *items))handler;
 
 @end
