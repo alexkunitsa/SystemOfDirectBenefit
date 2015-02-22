@@ -7,6 +7,7 @@
 //
 
 #import "Deal+Converter.h"
+#import "Item+Converter.h"
 
 @implementation Deal (Converter)
 
@@ -17,10 +18,7 @@
     deal.ownerId = dict[@"id_user_receive"];
     deal.userId = dict[@"id_user_item"];
     
-    Item *item = [[Item alloc] init];
-    item.name = dict[@"name"];
-    item.itemDescription = dict[@"description"];
-    
+    Item *item = [Item itemWithDictionary:dict[@"0"]];    
     deal.relatedItem = item;
 
     return deal;

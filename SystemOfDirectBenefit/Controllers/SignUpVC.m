@@ -66,7 +66,7 @@
     if (![self areFieldsValid]) {
         return;
     }
-    
+
     [[RequestManager sharedInstance] registerUser:user completionHandler:^(BOOL success) {
         if (success) {
             [self pushToProfile];
@@ -115,6 +115,7 @@
 #pragma mark - Private
 
 - (BOOL)areFieldsValid {
+    
     BOOL valid = YES;
     NSArray *fields = @[self.nameTextField, self.loginTextField,  self.passwordTextField, self.confirmPasswordTextField,  self.phoneTextField, self.emailTextField, self.birthDateTextField, self.cityTextField];
     
@@ -129,7 +130,42 @@
         }
     }
     
+    if (![self isValidEmail:self.emailTextField.text]) {
+        [self.emailTextField makeHightlighted];
+        return NO;
+    }
+    else {
+        [self.emailTextField makeNormal];
+    }
+    
+    if (![self.passwordTextField.text isEqualToString:self.confirmPasswordTextField.text]) {
+        [self.passwordTextField makeHightlighted];
+        [self.confirmPasswordTextField makeHightlighted];
+        
+        return NO;
+    }
+    else {
+        [self.passwordTextField makeNormal];
+        [self.confirmPasswordTextField makeNormal];
+    }
+    
     return valid;
 }
+
+
+- (BOOL)isValidEmail:(NSString *)text {
+    if (text.length == 0) {
+        return NO;
+    }
+    
+    NSString *expression = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,100}";
+    NSError *error = NULL;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
+    NSTextCheckingResult *match = [regex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
+    
+    return match != nil;
+}
+
 
 @end
