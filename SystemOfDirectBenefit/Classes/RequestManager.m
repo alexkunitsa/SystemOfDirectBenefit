@@ -9,6 +9,7 @@
 #import "RequestManager.h"
 #import "User+Converter.h"
 #import "Item+Converter.h"
+#import "ItemCategory+Converter.h"
 #import "Constants.h"
 #import "RequestGenerator.h"
 #import "Global.h"
@@ -16,7 +17,6 @@
 
 @interface RequestManager()
 
-@property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) RequestGenerator *requestGenerator;
 
 @end
@@ -40,8 +40,6 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        self.session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
         self.requestGenerator = [[RequestGenerator alloc] init];
     }
     
@@ -120,13 +118,20 @@
 }
 
 
-- (void)searchCategory:(NSString *)text completionHandler:(void(^)(BOOL success))handler {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@", kServiceURL, @"category", text];
-    
+- (void)searchCategory:(NSString *)text completionHandler:(void(^)(BOOL success, NSArray *items))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", kServiceURL, @"category?text=", text];
+   
     [self.requestGenerator searchCategory:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
         NSError *error;
-        NSArray *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+        NSArray *items = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
         
+        NSMutableArray *resultItems = [[NSMutableArray alloc] init];
+        for (NSDictionary *info in items) {
+            ItemCategory *category = [ItemCategory itemWithDictionary:info];
+            [resultItems addObject:category];
+        }
+        
+        handler(success, resultItems);
     }];
 }
 
@@ -138,22 +143,22 @@
     [self.requestGenerator generatePOSTrequest:urlString params:params completionHandler:^(BOOL success, NSInteger code, NSData *result) {
         NSLog(@"add item up statusCode %ld", (long)code);
         
-        NSError *error;
-        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
-        NSString *session = info[@"session"];
-        if (session.length > 0) {
-            [[Global sharedInstance] setSessionId:session];
-        }
+//        NSError *error;
+//        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+//        NSString *session = info[@"session"];
+//        if (session.length > 0) {
+//            [[Global sharedInstance] setSessionId:session];
+//        }
         
-        NSLog(@"info %@", info);
+//        NSLog(@"info %@", info);
         
         handler(success);
     }];
 }
 
 
-- (void)receiveUserItems:(void(^)(BOOL success))handler {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"items"];
+- (void)receiveUserItems:(BOOL)isRequestType completionHandler:(void(^)(BOOL success, NSArray *items))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%i", kServiceURL, @"items?type=", isRequestType];
     
     [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
         NSLog(@"receive user items statusCode %ld", (long)code);
@@ -161,24 +166,33 @@
         NSError *error;
         NSArray *items = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
         
-        handler(success);
+        NSMutableArray *resultItems = [[NSMutableArray alloc] init];
+        for (NSDictionary *info in items) {
+            Item *item = [Item itemWithDictionary:info];
+            [resultItems addObject:item];
+        }
+        
+        handler(success, resultItems);
     }];
 }
 
 
-- (void)searchItem:(NSString *)text completionHandler:(void(^)(BOOL success))handler {
-//    NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"search/items?"];    
-//    [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
-//        NSLog(@"receive user statusCode %ld", (long)code);
-//        
-//        NSError *error;
-//        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
-//        
-//        User *currentUser = [[Global sharedInstance] currentUser];
-//        [currentUser updateWithResponce:info];
-//        
-//        handler(success);
-//    }];
+- (void)searchItem:(NSString *)text completionHandler:(void(^)(BOOL success, NSArray *items ))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@search?title=%@&category=%@&city=%@", kServiceURL, text, @"", @""];
+    
+    [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        NSLog(@"receive user statusCode %ld", (long)code);
+        
+        NSError *error;
+        NSArray *items = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+        NSMutableArray *resultItems = [[NSMutableArray alloc] init];
+        for (NSDictionary *info in items) {
+            Item *item = [Item itemWithDictionary:info];
+            [resultItems addObject:item];
+        }
+        
+        handler(success, resultItems);
+    }];
 
 }
 

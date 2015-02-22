@@ -1,28 +1,40 @@
 //
-//  SearchItemVC.m
+//  MyRequestsVC.m
 //  SystemOfDirectBenefit
 //
-//  Created by Alex Kunitsa on 2/21/15.
+//  Created by Alex Kunitsa on 2/22/15.
 //  Copyright (c) 2015 Alex Kunitsa. All rights reserved.
 //
 
-#import "SearchItemVC.h"
+#import "MyRequestsVC.h"
+#import "AddItemVC.h"
 #import "RequestManager.h"
 #import "Item.h"
 
-@interface SearchItemVC ()
+@interface MyRequestsVC ()
 
 @property (nonatomic, strong) NSArray *items;
 
 @end
 
 
-@implementation SearchItemVC
+@implementation MyRequestsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.automaticallyAdjustsScrollViewInsets = NO;
+
+    [[RequestManager sharedInstance] receiveUserItems:1 completionHandler:^(BOOL success, NSArray *items) {
+         self.items = items;
+        
+        //        dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        //        });
+    }];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,14 +52,7 @@
 }
 */
 
-- (IBAction)searchAction {
-    NSString *searchText = self.titleTextField.text;
-    
-    [[RequestManager sharedInstance] searchItem:searchText completionHandler:^(BOOL success, NSArray *items) {
-        self.items = items;
-        [self.tableView reloadData];
-    }];
-}
+
 
 
 #pragma mark - TableViewDelegate
@@ -73,23 +78,26 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     Item *item = self.items[indexPath.row];
     cell.textLabel.text = item.name;
+    cell.detailTextLabel.text = item.itemDescription;
     
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    ItemCategory *itemCategory = self.items[indexPath.row];
-//
-//    AddItemVC *vc = (AddItemVC *)[self backViewController];
-//    vc.selectedCategory = itemCategory;
     
-//    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)addRequestItem:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AddItemVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"Additem"];
+    vc.isRequestItem = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

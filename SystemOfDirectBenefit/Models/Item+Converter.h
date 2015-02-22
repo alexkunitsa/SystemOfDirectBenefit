@@ -11,5 +11,6 @@
 @interface Item (Converter)
 
 - (NSDictionary *)dictionaryWithItem;
++ (Item *)itemWithDictionary:(NSDictionary *)dict;
 
 @end

@@ -11,5 +11,6 @@
 @interface SearchCategoryVC : UIViewController <UISearchBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

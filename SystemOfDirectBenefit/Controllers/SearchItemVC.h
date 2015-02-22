@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemCategory.h"
 
 @interface SearchItemVC : UIViewController
+
+@property (nonatomic, weak) IBOutlet UITextField *titleTextField;
+@property (nonatomic, weak) IBOutlet UILabel *categoryNameLabel;
+@property (nonatomic, weak) IBOutlet UITextField *cityTextField;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) ItemCategory *selectedCategory;
+
+- (IBAction)searchAction;
 
 @end

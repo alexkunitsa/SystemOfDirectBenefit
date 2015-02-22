@@ -17,4 +17,6 @@
 
 - (void)searchCategory:(NSString *)urlString completionHandler:(void(^)(BOOL success, NSInteger code, NSData *result))handler;
 
+
+
 @end

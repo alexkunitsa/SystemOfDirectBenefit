@@ -10,6 +10,7 @@
 #import "RequestManager.h"
 #import "ItemCategory.h"
 #import "AddItemVC.h"
+#import "ItemCategory.h"
 
 @interface SearchCategoryVC ()
 
@@ -45,8 +46,12 @@
         return;
     }
     
-    [[RequestManager sharedInstance] searchCategory:searchText completionHandler:^(BOOL success) {
+    [[RequestManager sharedInstance] searchCategory:searchText completionHandler:^(BOOL success, NSArray *items) {
+        self.items = items;
         
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
 }
 
@@ -60,7 +65,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return self.items.count;
 }
 
 
@@ -77,18 +82,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    
-    cell.textLabel.text = @"Category";
+    ItemCategory *category = self.items[indexPath.row];
+    cell.textLabel.text = category.categoryDescription;
     
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    ItemCategory *itemCategory = self.items[indexPath.row];
+    ItemCategory *itemCategory = self.items[indexPath.row];
     
     AddItemVC *vc = (AddItemVC *)[self backViewController];
-    vc.selectedCategory = nil;
+    vc.selectedCategory = itemCategory;
     
     [self.navigationController popViewControllerAnimated:YES];
 }

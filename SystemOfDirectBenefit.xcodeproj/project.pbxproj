@@ -31,6 +31,10 @@
 		20147E471A991D2F0017A37D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E461A991D2F0017A37D /* Item.m */; };
 		20147E4A1A9921F10017A37D /* ItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E491A9921F10017A37D /* ItemCategory.m */; };
 		20147E4D1A9926630017A37D /* Item+Converter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20147E4C1A9926630017A37D /* Item+Converter.m */; };
+		20E70F721A994BBE003D8892 /* ItemCategory+Converter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E70F711A994BBE003D8892 /* ItemCategory+Converter.m */; };
+		20E70F771A995BF2003D8892 /* MyProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E70F751A995BF2003D8892 /* MyProfileCell.m */; };
+		20E70F781A995BF2003D8892 /* MyProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20E70F761A995BF2003D8892 /* MyProfileCell.xib */; };
+		20E70F7E1A9965B1003D8892 /* MyRequestsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E70F7D1A9965B1003D8892 /* MyRequestsVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +95,13 @@
 		20147E491A9921F10017A37D /* ItemCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCategory.m; sourceTree = "<group>"; };
 		20147E4B1A9926630017A37D /* Item+Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Item+Converter.h"; sourceTree = "<group>"; };
 		20147E4C1A9926630017A37D /* Item+Converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+Converter.m"; sourceTree = "<group>"; };
+		20E70F701A994BBE003D8892 /* ItemCategory+Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ItemCategory+Converter.h"; sourceTree = "<group>"; };
+		20E70F711A994BBE003D8892 /* ItemCategory+Converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ItemCategory+Converter.m"; sourceTree = "<group>"; };
+		20E70F741A995BF2003D8892 /* MyProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileCell.h; sourceTree = "<group>"; };
+		20E70F751A995BF2003D8892 /* MyProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileCell.m; sourceTree = "<group>"; };
+		20E70F761A995BF2003D8892 /* MyProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProfileCell.xib; sourceTree = "<group>"; };
+		20E70F7C1A9965B1003D8892 /* MyRequestsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRequestsVC.h; sourceTree = "<group>"; };
+		20E70F7D1A9965B1003D8892 /* MyRequestsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRequestsVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +148,7 @@
 				20147DFE1A98CFF00017A37D /* Models */,
 				20147E111A98D9690017A37D /* Classes */,
 				20147E181A98DCF90017A37D /* Categories */,
+				20E70F731A995BCF003D8892 /* Views */,
 				20147DDB1A98C9390017A37D /* AppDelegate.h */,
 				20147DDC1A98C9390017A37D /* AppDelegate.m */,
 				20147DE11A98C9390017A37D /* Main.storyboard */,
@@ -190,6 +202,8 @@
 				20147E2F1A9900410017A37D /* MyItemsVC.m */,
 				20147E421A9919330017A37D /* SearchCategoryVC.h */,
 				20147E431A9919330017A37D /* SearchCategoryVC.m */,
+				20E70F7C1A9965B1003D8892 /* MyRequestsVC.h */,
+				20E70F7D1A9965B1003D8892 /* MyRequestsVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,6 +221,8 @@
 				20147E4C1A9926630017A37D /* Item+Converter.m */,
 				20147E481A9921F10017A37D /* ItemCategory.h */,
 				20147E491A9921F10017A37D /* ItemCategory.m */,
+				20E70F701A994BBE003D8892 /* ItemCategory+Converter.h */,
+				20E70F711A994BBE003D8892 /* ItemCategory+Converter.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,6 +258,16 @@
 			children = (
 			);
 			path = 3rdParty;
+			sourceTree = "<group>";
+		};
+		20E70F731A995BCF003D8892 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20E70F741A995BF2003D8892 /* MyProfileCell.h */,
+				20E70F751A995BF2003D8892 /* MyProfileCell.m */,
+				20E70F761A995BF2003D8892 /* MyProfileCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20147DE31A98C9390017A37D /* Main.storyboard in Resources */,
+				20E70F781A995BF2003D8892 /* MyProfileCell.xib in Resources */,
 				20147DE81A98C9390017A37D /* LaunchScreen.xib in Resources */,
 				20147DE51A98C9390017A37D /* Images.xcassets in Resources */,
 			);
@@ -345,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20147E471A991D2F0017A37D /* Item.m in Sources */,
+				20E70F771A995BF2003D8892 /* MyProfileCell.m in Sources */,
 				20147E0A1A98D07C0017A37D /* SignUpVC.m in Sources */,
 				20147E271A98E8880017A37D /* RequestGenerator.m in Sources */,
 				20147E2A1A98F3270017A37D /* ProfileVC.m in Sources */,
@@ -353,8 +381,10 @@
 				20147E1B1A98DCF90017A37D /* NSDictionary+UrlEncoding.m in Sources */,
 				20147E301A9900410017A37D /* MyItemsVC.m in Sources */,
 				20147E211A98E11D0017A37D /* Global.m in Sources */,
+				20E70F7E1A9965B1003D8892 /* MyRequestsVC.m in Sources */,
 				20147E411A990F950017A37D /* SearchItemVC.m in Sources */,
 				20147E101A98D19B0017A37D /* User.m in Sources */,
+				20E70F721A994BBE003D8892 /* ItemCategory+Converter.m in Sources */,
 				20147E0D1A98D0930017A37D /* SignInVC.m in Sources */,
 				20147E171A98DA500017A37D /* User+Converter.m in Sources */,
 				20147E4D1A9926630017A37D /* Item+Converter.m in Sources */,

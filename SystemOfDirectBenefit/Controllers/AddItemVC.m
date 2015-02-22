@@ -21,6 +21,36 @@
     // Do any additional setup after loading the view.
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.descriptionTextView.delegate = self;
+    self.itemTitleLabel.delegate = self;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.isRequestItem) {
+        self.resourceTypeSegment.hidden = YES;
+        self.dealAcceptSegment.hidden = YES;
+        
+        self.resourceTypeLabel.hidden = YES;
+        self.dealAcceptLabel.hidden = YES;
+        self.resourceInfoButton.hidden = YES;
+        self.dealInfoButton.hidden = YES;
+    }
+    else {
+        self.resourceTypeSegment.hidden = NO;
+        self.dealAcceptSegment.hidden = NO;
+        
+        self.resourceTypeLabel.hidden = NO;
+        self.dealAcceptLabel.hidden = NO;
+        self.resourceInfoButton.hidden = NO;
+        self.dealInfoButton.hidden = NO;
+    }
+    
+    if (self.selectedCategory) {
+        self.categoryLabel.text = self.selectedCategory.categoryDescription;
+    }
 }
 
 
@@ -66,20 +96,37 @@
 
 
 - (void)saveItem {
-//    if (self.selectedCategory.itemCategoryId.length == 0) {
-//        return;
-//    }
+    if (self.selectedCategory.itemCategoryId.length == 0) {
+        return;
+    }
     
     Item *item = [[Item alloc] init];
     item.name = self.itemTitleLabel.text;
     item.itemDescription = self.descriptionTextView.text;
-    item.categoryId = @"1";//self.selectedCategory.itemCategoryId;
+    item.categoryId = self.selectedCategory.itemCategoryId;
     item.dealAccept = self.dealAcceptSegment.selectedSegmentIndex;
     item.resourceType = self.resourceTypeSegment.selectedSegmentIndex;
+    item.isRequestItem =  self.isRequestItem;
 
     [[RequestManager sharedInstance] addItem:item completionHandler:^(BOOL success) {
         
     }];
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    return NO;
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    
+    return YES;
 }
 
 @end

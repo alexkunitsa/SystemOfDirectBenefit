@@ -13,11 +13,23 @@
 - (NSDictionary *)dictionaryWithItem {
     NSDictionary *dict = @{
                            @"name":self.name ? self.name : @"",
+                           @"type":@(self.isRequestItem),
                            @"categoryid":self.categoryId ? self.categoryId : @"",
                            @"description":self.itemDescription ? self.itemDescription : @""};
     
     return dict;
 }
+
+
++ (Item *)itemWithDictionary:(NSDictionary *)dict {
+    Item *item = [[Item alloc] init];
+    item.itemId = dict[@"id"];
+    item.itemDescription = dict[@"description"];
+    item.name = dict[@"name"];
+    
+    return item;
+}
+
 
 
 @end

@@ -9,12 +9,16 @@
 #import "ProfileVC.h"
 #import "RequestManager.h"
 #import "Global.h"
+#import "MyProfileCell.h"
+
 
 @implementation ProfileVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    UINib *nib = [UINib nibWithNibName:@"MyProfileCell" bundle:nil];
+    [[self tableView] registerNib:nib forCellReuseIdentifier:@"MyProfileCell"];
 }
 
 
@@ -28,6 +32,15 @@
             self.userNameLabel.text = [[[Global sharedInstance] currentUser] name];
         });
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemSelected:) name:@"menuItemSelectedNotification" object:nil];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,6 +51,12 @@
 
 #pragma mark - TableViewDelegate
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.0f;
+}
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     // Don't show separators between empty cells
     return [UIView new];
@@ -45,7 +64,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return 6;
 }
 
 
@@ -55,63 +74,99 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
+    MyProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyProfileCell"];
+
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+//    static NSString *CellIdentifier = @"Cell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    
     
     
-    cell.textLabel.text = nil;
+    NSString *text = nil;
 
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"Statistics";
-        
+        text = @"Statistics";
+        cell.badgeLabel.hidden = YES;
+        cell.actionButton.hidden = YES;
     }
     else if (indexPath.row == 1) {
-        cell.textLabel.text = @"Current deals";
+        text = @"Current deals";
+        cell.badgeLabel.hidden = YES;
+        cell.actionButton.hidden = YES;
     }
     else if (indexPath.row == 2) {
-        cell.textLabel.text = @"Notifications";
+        text = @"Notifications";
+        cell.badgeLabel.hidden = YES;
+        cell.actionButton.hidden = YES;
     }
     else if (indexPath.row == 3) {
-        cell.textLabel.text = @"My items";
+        text = @"My items";
+        cell.badgeLabel.hidden = YES;
+        cell.actionButton.hidden = NO;
+        cell.selecteditemId = 3;
+//        [cell.actionButton setImage:[UIImage imageNamed:@"addIcon"] forState:UIControlStateNormal];
+
     }
     else if (indexPath.row == 4) {
-        cell.textLabel.text = @"My requests";
+        text = @"My requests";
+        cell.badgeLabel.hidden = YES;
+        cell.actionButton.hidden = NO;
+        cell.selecteditemId = 4;
+//        [cell.actionButton setImage:[UIImage imageNamed:@"searchIcon"] forState:UIControlStateNormal];
     }
+//    else if (indexPath.row == 5) {
+//        text = @"Add item";
+//        cell.badgeLabel.hidden = YES;
+//        cell.actionButton.hidden = YES;
+//    }
+//    else if (indexPath.row == 6) {
+//        text = @"Search item";
+//        cell.badgeLabel.hidden = YES;
+//        cell.actionButton.hidden = YES;
+//    }
     else if (indexPath.row == 5) {
-        cell.textLabel.text = @"Add item";
+        text = @"Sign out";
+        cell.badgeLabel.hidden = YES;
+        cell.actionButton.hidden = YES;
     }
-    else if (indexPath.row == 6) {
-        cell.textLabel.text = @"Search item";
-    }
-    else if (indexPath.row == 7) {
-        cell.textLabel.text = @"Sign out";
-    }
+    
+    cell.itemTitleLabel.text = text;
 
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 5) {
-        [self performSegueWithIdentifier:@"addItemSegue" sender:self];
-    }
-    
-    else if (indexPath.row == 3) {
+
+    if (indexPath.row == 3) {
         [self performSegueWithIdentifier:@"myItemsSegue" sender:self];
     }
-    
     else if (indexPath.row == 6) {
-        [self performSegueWithIdentifier:@"searchItemSegue" sender:self];
-    }
-    else if (indexPath.row == 7) {
         [[Global sharedInstance] setSessionId:nil];
         [[Global sharedInstance] setCurrentUser:nil];
 
         [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else if (indexPath.row == 4) {
+        [self performSegueWithIdentifier:@"profileToRequestsSegue" sender:self];
+    }
+}
+
+
+- (void)itemSelected:(NSNotification *)notification {
+    NSDictionary *info = notification.object;
+    NSNumber *numberId = info[@"itemId"];
+    
+    
+    if (numberId.integerValue == 3) {
+        [self performSegueWithIdentifier:@"addItemSegue" sender:self];
+    }
+    else if (numberId.integerValue == 4) {
+        [self performSegueWithIdentifier:@"searchItemSegue" sender:self];
     }
 }
 

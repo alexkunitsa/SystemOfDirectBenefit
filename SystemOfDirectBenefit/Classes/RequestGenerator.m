@@ -48,6 +48,8 @@
         BOOL success = (statusCode == 201 || statusCode == 200) && (error == nil);
         handler(success, statusCode, data);
 
+    
+        
         
 //        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
 //        NSInteger statusCode = [httpResponse statusCode];
@@ -94,13 +96,11 @@
         [self.categorySearchTask cancel];
     }
     
-    
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request setValue:[self formattedCookie] forHTTPHeaderField:@"Cookie"];
-    
     request.HTTPMethod = @"GET";
     
     self.categorySearchTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

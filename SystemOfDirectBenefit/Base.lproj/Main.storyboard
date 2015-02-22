@@ -150,6 +150,7 @@
                         <segue destination="XUT-ug-Svh" kind="show" identifier="addItemSegue" id="aFk-m1-mWy"/>
                         <segue destination="wcQ-RS-4Qt" kind="show" identifier="myItemsSegue" id="bku-mc-1eA"/>
                         <segue destination="il4-Sv-gcu" kind="show" identifier="searchItemSegue" id="55v-6J-DZR"/>
+                        <segue destination="VO1-Bn-37g" kind="show" identifier="profileToRequestsSegue" id="oF4-0T-Z87"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19l-YF-OnQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -159,7 +160,7 @@
         <!--Add Item-->
         <scene sceneID="TUN-Cr-Xhj">
             <objects>
-                <viewController id="XUT-ug-Svh" customClass="AddItemVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Additem" id="XUT-ug-Svh" customClass="AddItemVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lvo-ay-Xrx"/>
                         <viewControllerLayoutGuide type="bottom" id="ZfG-Bd-75z"/>
@@ -360,9 +361,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryLabel" destination="HBj-qq-d0Y" id="VVt-Sp-bb7"/>
+                        <outlet property="dealAcceptLabel" destination="Z23-zw-bte" id="JRU-hX-78n"/>
                         <outlet property="dealAcceptSegment" destination="IGm-gt-U9N" id="eJ5-DA-dBg"/>
+                        <outlet property="dealInfoButton" destination="6VV-Up-EKA" id="XYA-ei-e9t"/>
                         <outlet property="descriptionTextView" destination="Ayz-Nc-gMa" id="Kh9-a2-peW"/>
                         <outlet property="itemTitleLabel" destination="7B3-es-P6T" id="sMd-7v-1Sk"/>
+                        <outlet property="resourceInfoButton" destination="PMK-MJ-bun" id="5tm-Gr-P0g"/>
+                        <outlet property="resourceTypeLabel" destination="jRq-4s-sLM" id="zLC-dD-ZAm"/>
                         <outlet property="resourceTypeSegment" destination="Qs3-Kp-xUg" id="mgF-mh-6WC"/>
                     </connections>
                 </viewController>
@@ -410,6 +415,7 @@
                     <navigationItem key="navigationItem" title="Search category" id="iv3-kO-fhL"/>
                     <connections>
                         <outlet property="searchBar" destination="gq4-dp-CDF" id="3QR-Sl-FPu"/>
+                        <outlet property="tableView" destination="D0z-Yu-WYW" id="oMq-PR-R01"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCO-sc-h48" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -446,10 +452,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Items" id="XyI-PN-B47"/>
+                    <connections>
+                        <outlet property="tableView" destination="Pps-1E-qal" id="y8T-4C-mNX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmE-wQ-Cbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="715" y="1188"/>
+            <point key="canvasLocation" x="723" y="1188"/>
         </scene>
         <!--Search item-->
         <scene sceneID="rWe-oI-OSf">
@@ -468,11 +477,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Um1-B3-IPC">
-                                <rect key="frame" x="15" y="110" width="570" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lRM-RK-M5O">
                                 <rect key="frame" x="15" y="148" width="483" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -486,25 +490,41 @@
                                 <state key="normal" title="Search">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="searchAction" destination="il4-Sv-gcu" eventType="touchUpInside" id="470-Du-VAk"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8r3-3b-Vhh">
                                 <rect key="frame" x="0.0" y="181" width="600" height="419"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="il4-Sv-gcu" id="LV3-6w-Dq3"/>
+                                    <outlet property="delegate" destination="il4-Sv-gcu" id="hKt-Yy-kAe"/>
+                                </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select category (optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bS7-xX-fob">
+                                <rect key="frame" x="16" y="115" width="208" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDp-Ym-Qv9">
+                                <rect key="frame" x="515" y="111" width="70" height="30"/>
+                                <state key="normal" title="Choose">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xsm-9G-upN" firstAttribute="top" secondItem="8r3-3b-Vhh" secondAttribute="bottom" id="146-5m-LOD"/>
                             <constraint firstAttribute="trailing" secondItem="8r3-3b-Vhh" secondAttribute="trailing" id="5sK-JY-H5Z"/>
-                            <constraint firstAttribute="trailing" secondItem="Um1-B3-IPC" secondAttribute="trailing" constant="15" id="6aR-LA-o1e"/>
                             <constraint firstItem="SzX-I5-2aL" firstAttribute="top" secondItem="vzs-oD-ij2" secondAttribute="bottom" constant="8" id="Gus-g1-fE2"/>
                             <constraint firstItem="8r3-3b-Vhh" firstAttribute="top" secondItem="rPG-FU-LXz" secondAttribute="bottom" constant="3" id="KP8-H2-zht"/>
                             <constraint firstItem="8r3-3b-Vhh" firstAttribute="leading" secondItem="2Um-kD-pxv" secondAttribute="leading" id="NN7-Ah-ocH"/>
                             <constraint firstItem="SzX-I5-2aL" firstAttribute="leading" secondItem="2Um-kD-pxv" secondAttribute="leading" constant="15" id="Nhn-Bp-Ldp"/>
-                            <constraint firstItem="Um1-B3-IPC" firstAttribute="leading" secondItem="2Um-kD-pxv" secondAttribute="leading" constant="15" id="TbY-gZ-j8m"/>
                             <constraint firstItem="rPG-FU-LXz" firstAttribute="top" secondItem="2Um-kD-pxv" secondAttribute="top" constant="148" id="UDQ-ay-gjc"/>
                             <constraint firstAttribute="trailing" secondItem="SzX-I5-2aL" secondAttribute="trailing" constant="15" id="ZkL-O9-dCc"/>
-                            <constraint firstItem="Um1-B3-IPC" firstAttribute="top" secondItem="2Um-kD-pxv" secondAttribute="top" constant="110" id="bDE-9S-iiK"/>
                             <constraint firstItem="lRM-RK-M5O" firstAttribute="top" secondItem="2Um-kD-pxv" secondAttribute="top" constant="148" id="jlq-SK-x6j"/>
                             <constraint firstItem="lRM-RK-M5O" firstAttribute="leading" secondItem="2Um-kD-pxv" secondAttribute="leading" constant="15" id="rMK-x5-HHc"/>
                             <constraint firstItem="rPG-FU-LXz" firstAttribute="leading" secondItem="lRM-RK-M5O" secondAttribute="trailing" constant="17" id="uVh-zh-cHB"/>
@@ -512,10 +532,60 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search item" id="ovj-gb-jd0"/>
+                    <connections>
+                        <outlet property="categoryNameLabel" destination="bS7-xX-fob" id="dRK-jX-WO7"/>
+                        <outlet property="cityTextField" destination="lRM-RK-M5O" id="qAZ-fo-OXY"/>
+                        <outlet property="tableView" destination="8r3-3b-Vhh" id="nw9-Zt-Qn3"/>
+                        <outlet property="titleTextField" destination="SzX-I5-2aL" id="JU0-Hf-JwP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4V9-Wr-Kfo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2" y="1728"/>
+            <point key="canvasLocation" x="2" y="1964"/>
+        </scene>
+        <!--My requests-->
+        <scene sceneID="16r-Ov-v5O">
+            <objects>
+                <viewController id="VO1-Bn-37g" customClass="MyRequestsVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fqj-Nf-5eD"/>
+                        <viewControllerLayoutGuide type="bottom" id="fvl-4T-ee5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Skr-a9-QRx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Upy-pH-edX">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="VO1-Bn-37g" id="Ac1-rF-hhQ"/>
+                                    <outlet property="delegate" destination="VO1-Bn-37g" id="seI-sw-ypS"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Upy-pH-edX" firstAttribute="leading" secondItem="Skr-a9-QRx" secondAttribute="leading" id="1UD-yG-F4T"/>
+                            <constraint firstItem="fvl-4T-ee5" firstAttribute="top" secondItem="Upy-pH-edX" secondAttribute="bottom" id="TDw-ZK-S5m"/>
+                            <constraint firstItem="Upy-pH-edX" firstAttribute="top" secondItem="Skr-a9-QRx" secondAttribute="topMargin" id="h7g-Yb-ug2"/>
+                            <constraint firstAttribute="trailing" secondItem="Upy-pH-edX" secondAttribute="trailing" id="wOy-Ny-GYb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="My requests" id="nn8-MP-NRs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Khc-M4-7Sg">
+                            <connections>
+                                <action selector="addRequestItem:" destination="VO1-Bn-37g" id="gZ1-Vg-FpO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Upy-pH-edX" id="QhB-nR-mUz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QIY-jn-e6i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="715" y="1964"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="RMx-We-cby">

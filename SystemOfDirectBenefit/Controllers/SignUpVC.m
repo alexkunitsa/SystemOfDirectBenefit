@@ -74,12 +74,14 @@
     [self.scrollView setContentOffset:CGPointMake(0, textField.center.y - offset) animated:YES];
 }
 
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     [self.scrollView setContentOffset:CGPointZero animated:YES];
     
     return NO;
 }
+
 
 #pragma mark - Navigation
 

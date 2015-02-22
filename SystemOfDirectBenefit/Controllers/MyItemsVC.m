@@ -8,6 +8,7 @@
 
 #import "MyItemsVC.h"
 #import "RequestManager.h"
+#import "Item.h"
 
 @interface MyItemsVC ()
 
@@ -20,11 +21,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
 
-    [[RequestManager sharedInstance] receiveUserItems:^(BOOL success) {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[RequestManager sharedInstance] receiveUserItems:0 completionHandler:^(BOOL success, NSArray *items) {
+        self.items = items;
         
+        //        dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        //        });
     }];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -51,7 +61,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return self.items.count;
 }
 
 
@@ -65,18 +75,19 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    
-    cell.textLabel.text = @"item";
+    Item *item = self.items[indexPath.row];
+    cell.textLabel.text = item.name;
+    cell.detailTextLabel.text = item.itemDescription;
     
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
 }
 
 @end
