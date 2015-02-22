@@ -9,6 +9,7 @@
 #import "MyItemsVC.h"
 #import "RequestManager.h"
 #import "Item.h"
+#import "ItemInfoVC.h"
 
 @interface MyItemsVC ()
 
@@ -54,12 +55,6 @@
 
 #pragma mark - TableViewDelegate
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    // Don't show separators between empty cells
-    return [UIView new];
-}
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.items.count;
 }
@@ -87,7 +82,13 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Item *item = self.items[indexPath.row];
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ItemInfoVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"itemInfo"];
+    vc.item = item;
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 @end

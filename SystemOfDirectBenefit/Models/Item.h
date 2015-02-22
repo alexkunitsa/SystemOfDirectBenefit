@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSString *itemDescription;
 @property (nonatomic, assign) NSInteger resourceType;
 @property (nonatomic, assign) NSInteger dealAccept;
-
 @property (nonatomic, assign) BOOL isRequestItem;
 
 @end

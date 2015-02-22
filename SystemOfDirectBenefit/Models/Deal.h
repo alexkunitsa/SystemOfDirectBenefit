@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Item.h"
 
 @interface Deal : NSObject
 
@@ -14,5 +15,7 @@
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *ownerId;
 @property (nonatomic, strong) NSString *userId;
+
+@property (nonatomic, strong) Item *relatedItem;
 
 @end

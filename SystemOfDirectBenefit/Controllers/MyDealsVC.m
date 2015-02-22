@@ -9,6 +9,7 @@
 #import "MyDealsVC.h"
 #import "RequestManager.h"
 #import "Deal.h"
+#import "Global.h"
 
 @interface MyDealsVC ()
 
@@ -23,11 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [[RequestManager sharedInstance] receiveDeals:^(BOOL success, NSMutableDictionary *items) {
-        self.items = items;
-        [self.tableView reloadData];
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,16 +31,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self receiveDetails];
 }
-*/
 
+
+- (void)receiveDetails {
+    [[RequestManager sharedInstance] receiveDeals:^(BOOL success, NSMutableDictionary *items) {
+        self.items = items;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
+}
 
 
 #pragma mark - TableViewDelegate
@@ -102,9 +104,11 @@
     NSString *identifier = [NSString stringWithFormat:@"%li",(long)indexPath.section];
     NSArray *items = self.items[identifier];
     Deal *deal = items[indexPath.row];
+    Item *item = deal.relatedItem;
     
-    cell.textLabel.text = deal.dealId;
-    
+    cell.textLabel.text = item.name;
+    cell.detailTextLabel.text = item.itemDescription;
+
     return cell;
 }
 
@@ -113,38 +117,116 @@
     NSString *title = nil;
     self.currentIndexPath = indexPath;
     
-    if (indexPath.section == 0) {
-        title = @"Confirm order";
-        self.stateToChange = 1;
+    NSString *identifier = [NSString stringWithFormat:@"%li",(long)indexPath.section];
+    NSArray *items = self.items[identifier];
+    Deal *deal = items[indexPath.row];
+    
+    NSString *currentUserId = [[[Global sharedInstance] currentUser] userId];
+    
+    BOOL isSenderUser = [deal.userId isEqualToString:currentUserId];
+    if (isSenderUser) {
+        if (indexPath.section == 0) {
+            title = nil;
+        }
+        else if (indexPath.section == 1) {
+            title = @"Took";
+            self.stateToChange = 2;
+        }
+        else if (indexPath.section == 2) {
+            title = @"Return";
+            self.stateToChange = 3;
+        }
+        else if (indexPath.section == 3) {
+            title = nil;
+        }
+        else if (indexPath.section == 4 || indexPath.section == 5) {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            return;
+        }
+      
     }
-    else if (indexPath.section == 1) {
-        title = @"Took";
-        self.stateToChange = 2;
-    }
-    else if (indexPath.section == 2) {
-        title = @"Return";
-        self.stateToChange = 3;
-    }
-    else if (indexPath.section == 3) {
-        title = @"Confirm return";
-        self.stateToChange = 4;
-    }
+    else {
+        if (indexPath.section == 0) {
+            title = @"Confirm order";
+            self.stateToChange = 1;
+        }
+        else if (indexPath.section == 1) {
+            title = nil;
+        }
+        else if (indexPath.section == 2) {
+            title = nil;
+        }
+        else if (indexPath.section == 3) {
+            title = @"Confirm return";
+            self.stateToChange = 4;
 
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Change status" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:title, nil];
-    [actionSheet showInView:self.view];
-}
+        }
+        else if (indexPath.section == 4 || indexPath.section == 5) {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            return;
+        }
+    }
+    
+    
+    if ([currentUserId isEqualToString:deal.userId] && [currentUserId isEqualToString:deal.ownerId]) {
+        if (indexPath.section == 0) {
+            title = @"Confirm order";
+            self.stateToChange = 1;
+        }
+        else if (indexPath.section == 1) {
+            title = @"Took";
+            self.stateToChange = 2;
+        }
+        else if (indexPath.section == 2) {
+            title = @"Return";
+            self.stateToChange = 3;
+        }
+        else if (indexPath.section == 3) {
+            title = @"Confirm return";
+            self.stateToChange = 4;
+        }
+        else if (indexPath.section == 4 || indexPath.section == 5) {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            return;
+        }
+    }
+    
+    
+    UIActionSheet *actionSheet = nil;
+    if (title.length > 0) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Change status" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Remove deal" otherButtonTitles:title, nil];
+        [actionSheet showInView:self.view];
+
+    }
+    else {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Change status" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Remove deal" otherButtonTitles:nil, nil];
+        [actionSheet showInView:self.view];
+    }
+  }
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *identifier = [NSString stringWithFormat:@"%li",(long)self.currentIndexPath.section];
+    NSArray *items = self.items[identifier];
+    Deal *deal = items[self.currentIndexPath.row];
+
+    
     if (buttonIndex == 0) {
         
-//        NSString *identifier = [NSString stringWithFormat:@"%li",(long)self.currentIndexPath.section];
-//        NSArray *items = self.items[identifier];
-//        Deal *deal = items[self.currentIndexPath.row];
-//
-//        [[RequestManager sharedInstance] changeDealStatus:deal.dealId status:@(self.stateToChange) completionHandler:^(BOOL success) {
-//            
-//        }];
+        [[RequestManager sharedInstance] changeDealStatus:deal.dealId status:@(5) completionHandler:^(BOOL success) {
+            if (success) {
+                [self receiveDetails];
+            }
+        }];
+        NSLog(@"delete status");
+        
+    } else if (buttonIndex == 1) {
+        [[RequestManager sharedInstance] changeDealStatus:deal.dealId status:@(self.stateToChange) completionHandler:^(BOOL success) {
+            if (success) {
+                [self receiveDetails];
+            }
+        }];
+
         
         NSLog(@"change status %ld", (long)self.stateToChange);
     }

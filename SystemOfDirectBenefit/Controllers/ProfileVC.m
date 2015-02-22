@@ -64,7 +64,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 5;
 }
 
 
@@ -98,12 +98,12 @@
         cell.badgeLabel.hidden = YES;
         cell.actionButton.hidden = YES;
     }
+//    else if (indexPath.row == 2) {
+//        text = @"Notifications";
+//        cell.badgeLabel.hidden = YES;
+//        cell.actionButton.hidden = YES;
+//    }
     else if (indexPath.row == 2) {
-        text = @"Notifications";
-        cell.badgeLabel.hidden = YES;
-        cell.actionButton.hidden = YES;
-    }
-    else if (indexPath.row == 3) {
         text = @"My items";
         cell.badgeLabel.hidden = YES;
         cell.actionButton.hidden = NO;
@@ -111,7 +111,7 @@
 //        [cell.actionButton setImage:[UIImage imageNamed:@"addIcon"] forState:UIControlStateNormal];
 
     }
-    else if (indexPath.row == 4) {
+    else if (indexPath.row == 3) {
         text = @"My requests";
         cell.badgeLabel.hidden = YES;
         cell.actionButton.hidden = NO;
@@ -128,7 +128,7 @@
 //        cell.badgeLabel.hidden = YES;
 //        cell.actionButton.hidden = YES;
 //    }
-    else if (indexPath.row == 5) {
+    else if (indexPath.row == 4) {
         text = @"Sign out";
         cell.badgeLabel.hidden = YES;
         cell.actionButton.hidden = YES;
@@ -142,16 +142,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (indexPath.row == 3) {
+    if (indexPath.row == 2) {
         [self performSegueWithIdentifier:@"myItemsSegue" sender:self];
     }
-    else if (indexPath.row == 6) {
+    else if (indexPath.row == 4) {
         [[Global sharedInstance] setSessionId:nil];
         [[Global sharedInstance] setCurrentUser:nil];
 
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
-    else if (indexPath.row == 4) {
+    else if (indexPath.row == 3) {
         [self performSegueWithIdentifier:@"profileToRequestsSegue" sender:self];
     }
     else if (indexPath.row == 1) {

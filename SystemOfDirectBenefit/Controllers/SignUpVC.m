@@ -70,7 +70,6 @@
         return;
     }
     
-    
     [self.scrollView setContentOffset:CGPointMake(0, textField.center.y - offset) animated:YES];
 }
 
@@ -87,7 +86,7 @@
 
 - (void)pushToProfile {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"loginToProfileSegue" sender:self];
+        [self performSegueWithIdentifier:@"signUpToProfileSegue" sender:self];
     });
 }
 

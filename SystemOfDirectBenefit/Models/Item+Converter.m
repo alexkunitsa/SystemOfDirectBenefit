@@ -13,8 +13,10 @@
 - (NSDictionary *)dictionaryWithItem {
     NSDictionary *dict = @{
                            @"name":self.name ? self.name : @"",
-                           @"type":@(self.isRequestItem),
+                           @"RequestType":@(self.isRequestItem),
                            @"categoryid":self.categoryId ? self.categoryId : @"",
+                           @"method":@(self.dealAccept),
+                           @"type":@(self.resourceType),
                            @"description":self.itemDescription ? self.itemDescription : @""};
     
     return dict;
@@ -26,6 +28,9 @@
     item.itemId = dict[@"id"];
     item.itemDescription = dict[@"description"];
     item.name = dict[@"name"];
+    item.resourceType = [dict[@"type"] integerValue];
+    item.dealAccept = [dict[@"method"] integerValue];
+
     
     return item;
 }

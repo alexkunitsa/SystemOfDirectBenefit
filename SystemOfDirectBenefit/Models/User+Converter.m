@@ -39,6 +39,7 @@
     self.login = dict[@"login"];
     self.name = dict[@"name"];
     self.phone = dict[@"tel"];
+    self.userId = dict[@"id"];
 }
 
 

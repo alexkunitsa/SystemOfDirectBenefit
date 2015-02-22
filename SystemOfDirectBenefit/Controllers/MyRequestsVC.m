@@ -22,9 +22,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     [[RequestManager sharedInstance] receiveUserItems:1 completionHandler:^(BOOL success, NSArray *items) {
-         self.items = items;
+        self.items = items;
         
         //        dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
@@ -33,35 +38,13 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-
 
 #pragma mark - TableViewDelegate
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    // Don't show separators between empty cells
-    return [UIView new];
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.items.count;

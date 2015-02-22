@@ -23,6 +23,14 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSString *lastLogin = [[NSUserDefaults standardUserDefaults] stringForKey:@"lastLogin"];
+    self.loginTextField.text = lastLogin;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -41,6 +49,10 @@
     
     [[RequestManager sharedInstance] login:login password:password completionHandler:^(BOOL success) {
         if (success) {
+            NSString *valueToSave = login;
+            [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"lastLogin"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
             [self pushToProfile];
         }
         else {

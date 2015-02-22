@@ -9,6 +9,7 @@
 #import "AddItemVC.h"
 #import "Item.h"
 #import "RequestManager.h"
+#import "UITextField+Validation.h"
 
 @interface AddItemVC ()
 
@@ -97,7 +98,11 @@
 
 - (void)saveItem {
     if (self.selectedCategory.itemCategoryId.length == 0) {
+        self.categoryLabel.textColor = [UIColor redColor];
         return;
+    }
+    else {
+        self.categoryLabel.textColor = [UIColor blackColor];
     }
     
     Item *item = [[Item alloc] init];
@@ -109,8 +114,31 @@
     item.isRequestItem =  self.isRequestItem;
 
     [[RequestManager sharedInstance] addItem:item completionHandler:^(BOOL success) {
-        
+        if (success) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }
     }];
+}
+
+
+- (BOOL)areFieldsValid {
+    BOOL valid = YES;
+    NSArray *fields = @[self.itemTitleLabel];
+    
+    for (UITextField *field in fields) {
+        
+        if ([field isEmpty]) {
+            valid = NO;
+            [field makeHightlighted];
+        }
+        else {
+            [field makeNormal];
+        }
+    }
+    
+    return valid;
 }
 
 

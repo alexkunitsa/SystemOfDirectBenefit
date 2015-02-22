@@ -16,6 +16,12 @@
     deal.status = dict[@"id_status"];
     deal.ownerId = dict[@"id_user_receive"];
     deal.userId = dict[@"id_user_item"];
+    
+    Item *item = [[Item alloc] init];
+    item.name = dict[@"name"];
+    item.itemDescription = dict[@"description"];
+    
+    deal.relatedItem = item;
 
     return deal;
 }

@@ -106,6 +106,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"user"];
     
     [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        
         NSLog(@"receive user statusCode %ld", (long)code);
         
         NSError *error;
@@ -208,7 +209,12 @@
 
 
 - (void)changeDealStatus:(NSString *)dealId status:(NSNumber *)status completionHandler:(void(^)(BOOL success))handler {
+    NSString *urlString = [NSString stringWithFormat:@"%@updatedeal?IDdeal=%@&status=%ld", kServiceURL, dealId, (long)status.integerValue];
     
+    [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
+        
+        handler(success);
+    }];
 
 }
 
@@ -221,7 +227,6 @@
         NSError *error;
         NSArray *items = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
 
-        
         NSMutableDictionary *resultItems = [[NSMutableDictionary alloc] init];
         resultItems[@"0"] = [[NSMutableArray alloc] init];
         resultItems[@"1"] = [[NSMutableArray alloc] init];
@@ -248,9 +253,6 @@
                 [resultItems[@"4"] addObject:deal];
             }
         }
-        
-        
-
         
         handler(success, resultItems);
     }];
