@@ -31,6 +31,15 @@
     [super viewWillAppear:animated];
     
     self.searchBar.delegate = self;
+    
+    [[RequestManager sharedInstance] searchCategory:@"" completionHandler:^(BOOL success, NSArray *items) {
+        self.items = items;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
+
 }
 
 
@@ -41,9 +50,9 @@
 
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    if ([searchText length] < 3) {
-        return;
-    }
+//    if ([searchText length] < 3) {
+//        return;
+//    }
     
     [[RequestManager sharedInstance] searchCategory:searchText completionHandler:^(BOOL success, NSArray *items) {
         self.items = items;
