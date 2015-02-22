@@ -10,9 +10,9 @@
 
 @interface MyProfileCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *itemTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *badgeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *actionButton;
+@property (nonatomic, weak) IBOutlet UILabel *itemTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *badgeLabel;
+@property (nonatomic, weak) IBOutlet UIButton *actionButton;
 
 @property (nonatomic, assign) NSInteger selecteditemId;
 

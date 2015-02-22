@@ -10,6 +10,6 @@
 
 @interface MyItemsVC : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

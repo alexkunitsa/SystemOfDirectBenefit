@@ -26,10 +26,11 @@
     [super viewDidLoad];
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -75,7 +76,6 @@
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    // Don't show separators between empty cells
     return [UIView new];
 }
 
@@ -167,7 +167,6 @@
         }
     }
     
-    
     if ([currentUserId isEqualToString:deal.userId] && [currentUserId isEqualToString:deal.ownerId]) {
         if (indexPath.section == 0) {
             title = @"Confirm order";
@@ -210,24 +209,19 @@
     NSArray *items = self.items[identifier];
     Deal *deal = items[self.currentIndexPath.row];
 
-    
     if (buttonIndex == 0) {
-        
         [[RequestManager sharedInstance] changeDealStatus:deal.dealId status:@(5) completionHandler:^(BOOL success) {
             if (success) {
                 [self receiveDetails];
             }
         }];
         NSLog(@"delete status");
-        
     } else if (buttonIndex == 1) {
         [[RequestManager sharedInstance] changeDealStatus:deal.dealId status:@(self.stateToChange) completionHandler:^(BOOL success) {
             if (success) {
                 [self receiveDetails];
             }
         }];
-
-        
         NSLog(@"change status %ld", (long)self.stateToChange);
     }
 }

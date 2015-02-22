@@ -25,6 +25,7 @@
 
 @implementation RequestManager
 
+
 #pragma mark - Lifecycle
 
 + (instancetype)sharedInstance {
@@ -65,16 +66,12 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"signup"];
    
     [self.requestGenerator generatePOSTrequest:urlString params:params completionHandler:^(BOOL success, NSInteger code, NSData *result) {
-        NSLog(@"sign up statusCode %ld", (long)code);
-        
         NSError *error;
         NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
         NSString *session = info[@"session"];
         if (session.length > 0) {
             [[Global sharedInstance] setSessionId:session];
         }
-        
-        NSLog(@"info %@", info);
         
         handler(success);
     }];
@@ -86,7 +83,6 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"login"];
     
     [self.requestGenerator generatePOSTrequest:urlString params:params completionHandler:^(BOOL success, NSInteger code, NSData *result) {
-        NSLog(@"login statusCode %ld", (long)code);
         
         NSError *error;
         NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
@@ -95,8 +91,6 @@
             [[Global sharedInstance] setSessionId:session];
         }
         
-        NSLog(@"info %@", info);
-    
         handler(success);
     }];
 }
@@ -106,9 +100,6 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"user"];
     
     [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
-        
-        NSLog(@"receive user statusCode %ld", (long)code);
-        
         NSError *error;
         NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
         
@@ -144,15 +135,6 @@
     
     [self.requestGenerator generatePOSTrequest:urlString params:params completionHandler:^(BOOL success, NSInteger code, NSData *result) {
         NSLog(@"add item up statusCode %ld", (long)code);
-        
-//        NSError *error;
-//        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
-//        NSString *session = info[@"session"];
-//        if (session.length > 0) {
-//            [[Global sharedInstance] setSessionId:session];
-//        }
-        
-//        NSLog(@"info %@", info);
         
         handler(success);
     }];
@@ -202,7 +184,6 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", kServiceURL, @"deal?item=", itemId];
     
     [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
-        
         handler(success);
     }];
 }
@@ -212,10 +193,8 @@
     NSString *urlString = [NSString stringWithFormat:@"%@updatedeal?IDdeal=%@&status=%ld", kServiceURL, dealId, (long)status.integerValue];
     
     [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
-        
         handler(success);
     }];
-
 }
 
 
@@ -223,7 +202,6 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@", kServiceURL, @"deals"];
     
     [self.requestGenerator generateGETrequest:urlString completionHandler:^(BOOL success, NSInteger code, NSData *result) {
-        
         NSError *error;
         NSArray *items = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
 

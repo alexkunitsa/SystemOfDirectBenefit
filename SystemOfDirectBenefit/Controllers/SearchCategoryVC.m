@@ -40,7 +40,6 @@
 }
 
 
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText length] < 3) {
         return;

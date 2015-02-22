@@ -16,14 +16,13 @@
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *resourceTypeSegment;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *dealAcceptSegment;
+@property (nonatomic, weak) IBOutlet UILabel *resourceTypeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *dealAcceptLabel;
+@property (nonatomic, weak) IBOutlet UIButton *resourceInfoButton;
+@property (nonatomic, weak) IBOutlet UIButton *dealInfoButton;
+
 @property (nonatomic, strong) ItemCategory *selectedCategory;
-@property (weak, nonatomic) IBOutlet UILabel *resourceTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dealAcceptLabel;
-@property (weak, nonatomic) IBOutlet UIButton *resourceInfoButton;
-@property (weak, nonatomic) IBOutlet UIButton *dealInfoButton;
-
 @property (nonatomic, assign) BOOL isRequestItem;
-
 
 - (IBAction)changeCategoryAction:(id)sender;
 - (IBAction)saveAddNewAction:(id)sender;

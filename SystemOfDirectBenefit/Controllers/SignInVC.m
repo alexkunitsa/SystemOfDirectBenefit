@@ -11,10 +11,10 @@
 #import "UITextField+Validation.h"
 #import <QuartzCore/QuartzCore.h>
 
-
 @interface SignInVC ()
 
 @end
+
 
 @implementation SignInVC
 

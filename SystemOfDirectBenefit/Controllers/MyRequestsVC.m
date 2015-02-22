@@ -31,16 +31,13 @@
     [[RequestManager sharedInstance] receiveUserItems:1 completionHandler:^(BOOL success, NSArray *items) {
         self.items = items;
         
-        //        dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
-        //        });
     }];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -75,6 +72,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
+
+
+#pragma mark - Actions
 
 - (IBAction)addRequestItem:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

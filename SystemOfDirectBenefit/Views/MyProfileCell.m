@@ -21,7 +21,6 @@
 }
 
 - (IBAction)buttonActon:(id)sender {
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"menuItemSelectedNotification" object:@{@"itemId":@(self.selecteditemId)}];
 }
 

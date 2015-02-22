@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.descriptionTextView.delegate = self;
@@ -77,6 +76,7 @@
     [self saveItem];
 }
 
+
 - (IBAction)showResourceTypeInfo:(id)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Info"
                                                         message:@"Put message text here"
@@ -85,6 +85,7 @@
                                               otherButtonTitles:nil, nil];
     [alertView show];
 }
+
 
 - (IBAction)showDealAccept:(id)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Info"

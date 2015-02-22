@@ -47,29 +47,13 @@
         
         BOOL success = (statusCode == 201 || statusCode == 200) && (error == nil);
         handler(success, statusCode, data);
-
-    
-        
-        
-//        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-//        NSInteger statusCode = [httpResponse statusCode];
-//        
-//        NSLog(@"statusCode %ld", (long)statusCode);
-//        
-//        if (data) {
-//            NSError *error;
-//            NSDictionary *info = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-//            NSLog(@"info %@", info);
-//        }
     }];
     
     [postDataTask resume];
 }
 
 
-
 - (void)generateGETrequest:(NSString *)urlString completionHandler:(void(^)(BOOL success, NSInteger code, NSData *result))handler {
-    
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
@@ -104,7 +88,6 @@
     request.HTTPMethod = @"GET";
     
     self.categorySearchTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         NSInteger statusCode = [httpResponse statusCode];
         
@@ -114,6 +97,7 @@
     
     [self.categorySearchTask  resume];
 }
+
 
 - (NSString *)formattedCookie {
     NSString *sessionId = [[Global sharedInstance] sessionId];

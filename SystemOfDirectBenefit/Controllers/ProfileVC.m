@@ -43,9 +43,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -58,7 +58,6 @@
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    // Don't show separators between empty cells
     return [UIView new];
 }
 
@@ -75,16 +74,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyProfileCell"];
-
-    
-//    static NSString *CellIdentifier = @"Cell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    
-    
     
     NSString *text = nil;
 
@@ -98,36 +87,18 @@
         cell.badgeLabel.hidden = YES;
         cell.actionButton.hidden = YES;
     }
-//    else if (indexPath.row == 2) {
-//        text = @"Notifications";
-//        cell.badgeLabel.hidden = YES;
-//        cell.actionButton.hidden = YES;
-//    }
     else if (indexPath.row == 2) {
         text = @"My items";
         cell.badgeLabel.hidden = YES;
         cell.actionButton.hidden = NO;
         cell.selecteditemId = 3;
-//        [cell.actionButton setImage:[UIImage imageNamed:@"addIcon"] forState:UIControlStateNormal];
-
     }
     else if (indexPath.row == 3) {
         text = @"My requests";
         cell.badgeLabel.hidden = YES;
         cell.actionButton.hidden = NO;
         cell.selecteditemId = 4;
-//        [cell.actionButton setImage:[UIImage imageNamed:@"searchIcon"] forState:UIControlStateNormal];
     }
-//    else if (indexPath.row == 5) {
-//        text = @"Add item";
-//        cell.badgeLabel.hidden = YES;
-//        cell.actionButton.hidden = YES;
-//    }
-//    else if (indexPath.row == 6) {
-//        text = @"Search item";
-//        cell.badgeLabel.hidden = YES;
-//        cell.actionButton.hidden = YES;
-//    }
     else if (indexPath.row == 4) {
         text = @"Sign out";
         cell.badgeLabel.hidden = YES;
@@ -141,7 +112,6 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (indexPath.row == 2) {
         [self performSegueWithIdentifier:@"myItemsSegue" sender:self];
     }

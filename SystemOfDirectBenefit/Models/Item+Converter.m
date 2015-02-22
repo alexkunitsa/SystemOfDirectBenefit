@@ -31,10 +31,8 @@
     item.resourceType = [dict[@"type"] integerValue];
     item.dealAccept = [dict[@"method"] integerValue];
 
-    
     return item;
 }
-
 
 
 @end
