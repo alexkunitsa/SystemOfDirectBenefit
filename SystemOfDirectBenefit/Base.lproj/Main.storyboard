@@ -196,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZZe-FC-wVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="160"/>
+            <point key="canvasLocation" x="723" y="-212"/>
         </scene>
         <!--Add Item-->
         <scene sceneID="TUN-Cr-Xhj">
@@ -461,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCO-sc-h48" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1397" y="508"/>
+            <point key="canvasLocation" x="1387" y="508"/>
         </scene>
         <!--My Items-->
         <scene sceneID="Zfy-WN-PbM">
@@ -499,7 +499,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmE-wQ-Cbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="723" y="1188"/>
+            <point key="canvasLocation" x="723" y="1186"/>
         </scene>
         <!--Search item-->
         <scene sceneID="rWe-oI-OSf">
@@ -765,7 +765,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QIY-jn-e6i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="715" y="1964"/>
+            <point key="canvasLocation" x="723" y="1964"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="RMx-We-cby">
@@ -902,7 +902,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shc-iN-lEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-752" y="1692"/>
+            <point key="canvasLocation" x="-752" y="1686"/>
         </scene>
     </scenes>
     <resources>

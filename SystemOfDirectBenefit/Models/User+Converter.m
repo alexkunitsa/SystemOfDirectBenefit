@@ -11,7 +11,7 @@
 @implementation User (Converter)
 
 - (NSDictionary *)dictionaryWithUser {
-    int birthdayTimeStamp = [[NSDate date] timeIntervalSince1970];;//[self.birthday timeIntervalSince1970];
+    int birthdayTimeStamp = [self.birthday timeIntervalSince1970];
     int nowTimeStamp = [[NSDate date] timeIntervalSince1970];
 
     NSString *birthdayTimeStampString = [NSString stringWithFormat:@"%d", birthdayTimeStamp];
@@ -29,7 +29,6 @@
                                @"tel":self.phone ? self.phone : @"",
                                @"type":@(0),
                                };
-
     return userDict;
 }
 
@@ -41,6 +40,5 @@
     self.phone = dict[@"tel"];
     self.userId = dict[@"id"];
 }
-
 
 @end

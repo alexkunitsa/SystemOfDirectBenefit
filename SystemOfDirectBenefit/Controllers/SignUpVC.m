@@ -9,10 +9,14 @@
 #import "SignUpVC.h"
 #import "User.h"
 #import "RequestManager.h"
+#import "UITextField+Validation.h"
 
 @interface SignUpVC ()
 
+@property (nonatomic, strong) UIDatePicker *datePicker;
+
 @end
+
 
 @implementation SignUpVC
 
@@ -32,7 +36,11 @@
     self.cityTextField.delegate = self;
     self.phoneTextField.delegate = self;
     self.confirmPasswordTextField.delegate = self;
-
+    
+    self.datePicker = [[UIDatePicker alloc] init];
+    [self.datePicker setDate:[NSDate date]];
+    [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    [self.birthDateTextField setInputView:self.datePicker];
 }
 
 
@@ -53,6 +61,11 @@
     user.city= self.cityTextField.text;
     user.gender = self.genderSegment.selectedSegmentIndex;
     user.phone = self.phoneTextField.text;
+    user.birthday = self.datePicker.date;
+    
+    if (![self areFieldsValid]) {
+        return;
+    }
     
     [[RequestManager sharedInstance] registerUser:user completionHandler:^(BOOL success) {
         if (success) {
@@ -90,5 +103,33 @@
     });
 }
 
+
+#pragma mark - 
+
+-(void)updateTextField:(id)sender {
+    UIDatePicker *picker = (UIDatePicker*)self.birthDateTextField.inputView;
+    self.birthDateTextField.text = [NSString stringWithFormat:@"%@",picker.date];
+}
+
+
+#pragma mark - Private
+
+- (BOOL)areFieldsValid {
+    BOOL valid = YES;
+    NSArray *fields = @[self.nameTextField, self.loginTextField,  self.passwordTextField, self.confirmPasswordTextField,  self.phoneTextField, self.emailTextField, self.birthDateTextField, self.cityTextField];
+    
+    for (UITextField *field in fields) {
+        
+        if ([field isEmpty]) {
+            valid = NO;
+            [field makeHightlighted];
+        }
+        else {
+            [field makeNormal];
+        }
+    }
+    
+    return valid;
+}
 
 @end
