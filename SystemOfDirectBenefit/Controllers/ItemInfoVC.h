@@ -17,6 +17,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *typeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dealLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *pictureImageView;
 
 - (IBAction)startDealAction:(id)sender;
 

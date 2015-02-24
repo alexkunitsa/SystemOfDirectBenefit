@@ -107,7 +107,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="m6l-sE-Uy3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="m6l-sE-Uy3">
                                 <rect key="frame" x="225" y="72" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="231-nW-a4N"/>
@@ -607,7 +607,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="itemPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="WlN-GA-HgV">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="itemPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="WlN-GA-HgV">
                                 <rect key="frame" x="250" y="72" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="uzH-Te-Tsx"/>
@@ -715,6 +715,7 @@
                     <connections>
                         <outlet property="dealLabel" destination="c7w-b7-Sn4" id="DbM-Ys-n5I"/>
                         <outlet property="descriptionLabel" destination="Lgo-X2-V2w" id="YH4-U2-NQZ"/>
+                        <outlet property="pictureImageView" destination="WlN-GA-HgV" id="ilb-FC-L4G"/>
                         <outlet property="titleLabel" destination="mue-IF-e88" id="nza-46-auG"/>
                         <outlet property="typeLabel" destination="5U4-9J-5P7" id="5B5-hB-yBa"/>
                     </connections>

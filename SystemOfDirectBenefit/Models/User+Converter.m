@@ -39,6 +39,11 @@
     self.name = dict[@"name"];
     self.phone = dict[@"tel"];
     self.userId = dict[@"id"];
+    
+    NSString *imageLink = dict[@"link"];
+    if ([imageLink isKindOfClass:[NSString class]]) {
+        self.profilePictureId = dict[@"link"];
+    }
 }
 
 @end

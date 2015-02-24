@@ -28,6 +28,22 @@
     self.navigationItem.hidesBackButton = YES;
     
     [[RequestManager sharedInstance] receiveUser:^(BOOL success) {
+        User *user = [[Global sharedInstance] currentUser];
+        
+        // TODO - move to requestManager 
+        if (user.profilePictureId.length > 0) {
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+            dispatch_async(queue, ^(void) {
+                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.profilePictureId]];
+                UIImage* image = [[UIImage alloc] initWithData:imageData];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.profilePictureImageView.image = image;
+                    });
+                }
+            });
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             self.userNameLabel.text = [[[Global sharedInstance] currentUser] name];
         });

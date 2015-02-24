@@ -39,6 +39,7 @@
     
     self.datePicker = [[UIDatePicker alloc] init];
     [self.datePicker setDate:[NSDate date]];
+    [self.datePicker setDatePickerMode:UIDatePickerModeDate];
     [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
     [self.birthDateTextField setInputView:self.datePicker];
 }
@@ -70,6 +71,9 @@
     [[RequestManager sharedInstance] registerUser:user completionHandler:^(BOOL success) {
         if (success) {
             [self pushToProfile];
+        }
+        else {
+            [self signUpFailed];
         }
     }];
 }
@@ -112,6 +116,14 @@
 }
 
 
+- (void)signUpFailed {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"User was not created" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    
+    [alertView show];
+    [self.view endEditing:YES];
+}
+
+
 #pragma mark - Private
 
 - (BOOL)areFieldsValid {
@@ -120,7 +132,6 @@
     NSArray *fields = @[self.nameTextField, self.loginTextField,  self.passwordTextField, self.confirmPasswordTextField,  self.phoneTextField, self.emailTextField, self.birthDateTextField, self.cityTextField];
     
     for (UITextField *field in fields) {
-        
         if ([field isEmpty]) {
             valid = NO;
             [field makeHightlighted];

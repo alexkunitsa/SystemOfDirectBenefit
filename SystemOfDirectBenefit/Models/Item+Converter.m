@@ -30,6 +30,11 @@
     item.name = dict[@"name"];
     item.resourceType = [dict[@"type"] integerValue];
     item.dealAccept = [dict[@"method"] integerValue];
+    
+    NSString *imageLink = dict[@"photo_link"];
+    if ([imageLink isKindOfClass:[NSString class]]) {
+        item.pictureId = imageLink;
+    }
 
     return item;
 }

@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *profilePictureId;
 @property (nonatomic, strong) NSDate *birthday;
 @property (nonatomic, strong) NSData *registerDate;
 @property (nonatomic, assign) Gender gender;
